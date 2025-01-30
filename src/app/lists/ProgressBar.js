@@ -8,7 +8,8 @@ import Bar from '../styles/Bar';
 // Needs props LengthValue, Type, Trigger, Color, Size
 export default function ProgressBar (props) {
     const [Restart, setRestart] = React.useState(false)
-    const [CurrentPosition, setCurrentPosition] = React.useState(props.LengthValue) 
+    // const [CurrentPosition, setCurrentPosition] = React.useState(props.LengthValue) 
+    const [CurrentPosition, setCurrentPosition] = React.useState(props.LengthValue)
     const [CurrentColor, setCurrentColor] = React.useState(props.Color) 
 
     const base_states = {"restart": [Restart, setRestart], "current_position": [CurrentPosition, setCurrentPosition], "length_value": [props.LengthValue, props.setLengthValue], "trigger": props.Trigger, "current_color": [CurrentColor, setCurrentColor]}

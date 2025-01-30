@@ -15,14 +15,15 @@ export default function Circles(props) {
     // const circle_style = "squares"
     // const circle_style = "stars"
     // const circle_style = "hearts"
-    // const circle_style = "moons"
+    const circle_style = "moons"
     // const circle_style = "hexagons"
-    const circle_style = "diamonds"
+    // const circle_style = "diamonds"
     // const circle_style = "trapezoids"
 
     useEffect(() => {
         display_circles() 
      }, [])
+
 
     useEffect(() => {
         if(props.base_states["trigger"][0] && props.base_states["current_position"][0] > 0){
@@ -60,11 +61,13 @@ export default function Circles(props) {
     function create_circle(condition, start = null){
         let class_txt = null
         let style = {}
-        condition ? style["--bgcolor"] = props.base_states["current_color"][0] : null
-        start ? class_txt = "progress_gray" : class_txt = circle_style
+        // condition ? style["--bgcolor"] = props.base_states["current_color"][0] : style["--bgcolor"] = "#c2c2c2"
+
+        condition ? style["--bgcolor"] = get_color() : style["--bgcolor"] = "#c2c2c2"
+        // start ? class_txt = "progress_gray" : class_txt = circle_style
         return (
             <div className="w-8">
-                <div className={class_txt} style={style}>
+                <div className={circle_style} style={style}>
                 </div>
             </div>
         )
@@ -93,9 +96,15 @@ export default function Circles(props) {
     }
 
 
-    function increment(condition){
-        condition ? props.base_states["current_color"][1]("green") : props.base_states["current_color"][1]("red")
+    function trigger_test(){
         props.base_states["trigger"][1](true)
+    }
+
+
+    function get_color(){
+        let value = props.base_states["current_color"][0].length - Math.ceil(props.base_states["current_position"][0] / props.base_states["length_value"][0] * props.base_states["current_color"][0].length)
+
+        return value < props.base_states["current_color"][0].length ? (props.base_states["current_position"][0] / props.base_states["length_value"][0]) >= ((props.base_states["current_color"][0].length - 1) / props.base_states["current_color"][0].length) ? props.base_states["current_color"][0][0] : props.base_states["current_color"][0][value] : props.base_states["current_color"][0][props.base_states["current_color"][0].length - 1]
     }
 
 
@@ -113,12 +122,10 @@ export default function Circles(props) {
             </div> 
             <div className="grid place-items-center grid-rows-1 grid-cols-2 gap-12">
                 <div>
-                <button className="mt-12" onClick={e => increment(true)}>Green</button>
                 </div>
                 <div>
-                <button className="mt-12" onClick={e => increment(false)}>Red</button>
+                <button className="mt-12" onClick={e => trigger_test()}>Increment</button>
                 </div>
-                
             </div>
         </div>
     )
