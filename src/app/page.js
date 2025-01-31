@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <div>
-      <ProgressBar LengthValue={35} Type="circles" Trigger={[Trigger, setTrigger]} Size={5} Color={["red", "green", "purple"]}/>
+      <ProgressBar LengthValue={23} Type="symbols" Style="hexagons" Trigger={[Trigger, setTrigger]} Size={5} Color={["red", "grfzffeen", "fuchsia", "#34adc3", "purple"]}/>
     </div>
   );
 }

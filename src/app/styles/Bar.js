@@ -1,11 +1,11 @@
 'use client'
 import React, {useEffect} from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import "../helpers/shapes.css"
+import "../helpers/symbols.css"
 
 // Creates the display for the progress bar
 // Needs props Restart, setRestart, LengthValue, CurrentPosition, ShowCirclesGreen, setShowCirclesGreen, ShowCirclesRed, setShowCirclesRed
-export default function Circles(props) {
+export default function Symbols(props) {
     const [CircleArray, setCircleArray] = React.useState([])
     const [CircleMap, setCircleMap] = React.useState([])
 
