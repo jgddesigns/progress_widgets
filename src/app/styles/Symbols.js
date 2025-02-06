@@ -1,7 +1,7 @@
 'use client'
 import React, {useEffect} from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import "../helpers/symbols.css"
+import '../helpers/symbols.css'
 import {global_functions} from '../helpers/functions'
 
 // Creates the display for the 'Symbols' progress bar
@@ -12,6 +12,7 @@ export default function Symbols(props) {
 
     const circle_states = {"circle_array": [CircleArray, setCircleArray], "circle_map": [CircleMap, setCircleMap]}
 
+    
 
     useEffect(() => {
         read_file()
@@ -26,7 +27,6 @@ export default function Symbols(props) {
             show_circles(true)
         }
     }, [props.base_states["trigger"][0]])
-
 
 
 
@@ -60,6 +60,10 @@ export default function Symbols(props) {
     // @return HTML Object: The div containing one circle
     function create_circle(condition, start = null){
         let style = {}
+
+        console.log(get_size())
+
+        style["--size"] = get_size() 
 
         condition ? style["--bgcolor"] = get_color() : style["--bgcolor"] = "#c2c2c2"
 
@@ -124,6 +128,22 @@ export default function Symbols(props) {
     }
 
 
+    function get_size(){
+        if(props.base_states["size"]){
+            return (props.base_states["size"] * 15).toString() + "px"
+        }
+        return "45px"
+    }
+
+
+    function get_spacing(){
+        if(props.base_states["size"]){
+            return (props.base_states["size"] * 30).toString() + "px"
+        }
+        return "90px"
+    }
+
+
     async function read_file(){
         var retrieved = null
 
@@ -141,7 +161,7 @@ export default function Symbols(props) {
 
     return(
         <div>
-            <div className="mt-[150px] grid place-items-center" style={{ gridTemplateColumns: 'repeat(' + props.base_states["length_value"][0] + ', 30px)' }}>
+            <div className="mt-[150px] grid place-items-center grid-auto-rows" style={{ gridTemplateColumns: 'repeat(' + props.base_states["length_value"][0] + ',' + get_spacing() + ')' }}>
                 {circle_states["circle_map"][0] ? circle_states["circle_map"][0].map((result) =>  {         
                         return(
                             <div key={result.key}>
@@ -155,7 +175,9 @@ export default function Symbols(props) {
                 <div>
                 </div>
                 <div>
-                <button className="mt-12" onClick={e => trigger_test()}>Increment</button>
+                {/* doesnt exist in final */}
+                <button className="mt-12" onClick={e => trigger_test()}>Increment</button> 
+                {/* end doesnt exist in final */}
                 </div>
             </div>
         </div>
