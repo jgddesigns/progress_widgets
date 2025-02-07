@@ -2,12 +2,11 @@ import {css_colors} from './colors'
 
 const hex_letters = ["a", "b", "c", "d", "e", "f"]
 
+
 function is_color(colors){
     let temp_arr = []
     for(let i=0; i<colors.length; i++){
-        console.log(colors[i])
         if(css_colors.includes(colors[i])){
-            console.log("color check confirmed (base color)")
             temp_arr.push(colors[i])
             continue
         }
@@ -30,14 +29,12 @@ function is_color(colors){
                     }
                 }
             }
-            console.log("color check confirmed (hex color)")
             temp_arr.push(colors[i])
             continue
         }
         console.log("no valid color, defaulting to gray")
         temp_arr.push("gray")
     }
-    console.log(temp_arr)
     return temp_arr
 }
 
@@ -46,7 +43,6 @@ async function parse_file(file, start, end){
     let words = []
     for(let i=0; i<file.length; i++){
         if(file[i] === start){
-            console.log(file[i])
             let word = ""
             for(let j=i+1; j<file.length; j++){
                 if(file[j] === end){
@@ -72,7 +68,6 @@ async function read_file(){
     const promise = new Promise((resolve, reject) => {
         resolve(parse_file(retrieved, ".", "{"))
     }).then(result => {
-        // setStyleList(result)
         return result
     })  
 }

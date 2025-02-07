@@ -12,6 +12,13 @@
     background-color: var(--bgcolor);
 }
 
+.bar{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    width: var(--width);
+    height: var(--height);
+    background-color: var(--bgcolor);
+}
+
 .stars{
     clip-path: polygon(
         50% 0%, 61% 35%, 98% 35%, 
@@ -59,6 +66,34 @@
 
 .trapezoids{
     clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
+    width: var(--size);
+    height: var(--size);
+    background-color: var(--bgcolor);  
+}
+
+.arrows_right{
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+    width: var(--size);
+    height: var(--size);
+    background-color: var(--bgcolor);  
+}
+
+.arrows_left{
+    clip-path: polygon(100% 0%, 0% 50%, 100% 100%);
+    width: var(--size);
+    height: var(--size);
+    background-color: var(--bgcolor);  
+}
+
+.arrows_up{
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    width: var(--size);
+    height: var(--size);
+    background-color: var(--bgcolor);  
+}
+
+.arrows_down{
+    clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
     width: var(--size);
     height: var(--size);
     background-color: var(--bgcolor);  

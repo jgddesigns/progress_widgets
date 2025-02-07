@@ -4,10 +4,12 @@ import ProgressBar from './lists/ProgressBar';
 
 export default function Home() {
   const [Trigger, setTrigger] = React.useState(false)
+  const [TriggerAmount, setTriggerAmount] = React.useState(15)
 
   return (
-    <div>
-      <ProgressBar LengthValue={23} Type="symbols" Style="stars" Trigger={[Trigger, setTrigger]} Size={5} Color={["orange", "#ce35aa", "lime", "#34adc3"]}/>
+    <div className="mt-12">
+      {/* <ProgressBar LengthValue={225} Type="symbols" Style="trapezoids" Trigger={[Trigger, setTrigger]} Size={3} Color={["#e63946", "#457b9d", "#f4a261", "#2a9d8f", "#9b5de5", "#ff6b6b", "#1d3557", "#ff9f1c", "#6a0572", "#52b788", "#8338ec", "#ffbe0b", "#3a86ff", "#06d6a0", "#ef476f", "#8ac926", "#ff595e", "#1982c4", "#d81159", "#ffca3a", "#c1121f", "#4361ee", "#f77f00", "#8f2d56", "#118ab2", "#9d4edd", "#e36414", "#00a896", "#bc4749", "#6a994e", "#ff007f", "#0a9396", "#aacc00", "#db3069", "#3d348b"]}/> */}
+      <ProgressBar Type="bar" Style="trapezoids" Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Size={1} Color={["#e63946", "#457b9d", "#f4a261", "#2a9d8f", "#9b5de5", "#ff6b6b", "#1d3557", "#8f2d56", "#118ab2", "#9d4edd", "#e36414", "#00a896", "#bc4749", "#6a994e", "#ff007f", "#0a9396", "#aacc00", "#db3069", "#3d348b"]}/>
       {/* <ProgressBar Trigger={[Trigger, setTrigger]} Size={4}/> */}
     </div>
   );
@@ -23,9 +25,16 @@ export default function Home() {
 
   // If this is not set correctly the component will not function.
 
+  // For 'bar' type, each trigger increments bar 1%. Trigger multiple times to advance for other percentages. (see below)
+
+
+// 'TriggerAmount' IS HOW MUCH THE BAR ADVANCES (15 = 15%, 1:1 ratio) 
+  //Not needed for 'shapes' prop
 
 
 // 'Size' SETS THE COMPONENT DISPLAY SIZE. ACCEPTS RANGE FROM 1 (smallest) - 5 (largest)
+
+  //For 'bar' type, length is always 100 and increment is based on percentage. Each increment is 1%. 
 
 
 
@@ -51,12 +60,16 @@ export default function Home() {
     // hexagons
     // diamonds
     // trapezoids
+    // arrows_left
+    // arrows_right
+    // arrows_up
+    // arrows_down
 
 
 
 // 'LengthValue' SETS AMOUNT OF SYMBOLS
   // defaults to 10
-
+  // Max 250
 
 
 // 'Color' ACCEPTS ANY VALID CSS SYMBOL OR HEX VALUE

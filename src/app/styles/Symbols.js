@@ -6,15 +6,18 @@ import {global_functions} from '../helpers/functions'
 
 // Creates the display for the 'Symbols' progress bar
 export default function Symbols(props) {
-    const [CircleArray, setCircleArray] = React.useState([])
-    const [CircleMap, setCircleMap] = React.useState([])
+    const [SymbolArray, setSymbolArray] = React.useState([])
+    const [SymbolMap, setSymbolMap] = React.useState([])
     const [StyleList, setStyleList] = React.useState(null)
 
-    const circle_states = {"circle_array": [CircleArray, setCircleArray], "circle_map": [CircleMap, setCircleMap]}
+    const shape_states = {"shape_array": [SymbolArray, setSymbolArray], "shape_map": [SymbolMap, setSymbolMap]}
 
-    
+    const row_size = props.base_states["size"] < 4 ? 20 : 10
 
-    useEffect(() => {
+    const row_class = props.base_states["size"] == 1 ? "grid mt-12" : "grid mt-24"
+
+
+    useEffect(() => {   
         read_file()
     }, [])
 
@@ -29,13 +32,12 @@ export default function Symbols(props) {
     }, [props.base_states["trigger"][0]])
 
 
-
     // Clears the circle array and map
     // @param: N/A
     // @return: N/A
     function clear_circles(){
-        circle_states["circle_array"][1]([])
-        circle_states["circle_map"][1]([])
+        shape_states["shape_array"][1]([])
+        shape_states["shape_map"][1]([])
     }
 
 
@@ -61,8 +63,6 @@ export default function Symbols(props) {
     function create_circle(condition, start = null){
         let style = {}
 
-        console.log(get_size())
-
         style["--size"] = get_size() 
 
         condition ? style["--bgcolor"] = get_color() : style["--bgcolor"] = "#c2c2c2"
@@ -82,19 +82,20 @@ export default function Symbols(props) {
     // @return: N/A 
     function show_circles(condition, start = null){
         let pos = props.base_states["current_position"][0]
-        let shown_arr = circle_states["circle_array"][0]
+        let shown_arr = shape_states["shape_array"][0]
 
         !start ? shown_arr[Math.abs(props.base_states["length_value"][0] - props.base_states["current_position"][0])] = create_circle(condition) : shown_arr.push(create_circle(condition, start))
 
-        const circle_map = shown_arr.map((name, index) => {
+        const shape_map = shown_arr.map((name, index) => {
             return {
               obj: shown_arr[index],
               key: uuidv4()
             }
         })
 
-        circle_states["circle_array"][1](shown_arr)
-        circle_states["circle_map"][1](circle_map)
+        shape_states["shape_array"][1](shown_arr)
+        shape_states["shape_map"][1](shape_map)
+
         condition ? pos = pos - 1 : null
         props.base_states["current_position"][1](pos)
         props.base_states["trigger"][1](false)
@@ -137,8 +138,15 @@ export default function Symbols(props) {
 
 
     function get_spacing(){
+        // if(props.base_states["size"] > 1){
+        //     return (props.base_states["size"] * 25).toString() + "px"
+        // }else if(props.base_states["size"] == 1){
+        //     return "25px"
+        // }
         if(props.base_states["size"]){
-            return (props.base_states["size"] * 30).toString() + "px"
+            return (props.base_states["size"] * 25).toString() + "px"
+        }else if(props.base_states["size"] == 1){
+            return "25px"
         }
         return "90px"
     }
@@ -158,28 +166,54 @@ export default function Symbols(props) {
     }
 
 
+    function display_map(){
+        let temp_arr = []
+        let display_arr = shape_states["shape_map"][0]
+
+        while(display_arr.length > 0){
+            if(display_arr.length >= row_size){
+                temp_arr.push(display_arr.slice(0, row_size))
+                display_arr = display_arr.slice(row_size)
+            }else{
+                temp_arr.push(display_arr.slice(0, display_arr.length))
+                display_arr = []
+            }
+
+        }
+
+        const new_arr = temp_arr.map((name, index) =>  {         
+            return{
+                obj: temp_arr[index],
+                key: uuidv4()
+            }
+        })
+
+        return new_arr
+    }
+
 
     return(
         <div>
-            <div className="mt-[150px] grid place-items-center grid-auto-rows" style={{ gridTemplateColumns: 'repeat(' + props.base_states["length_value"][0] + ',' + get_spacing() + ')' }}>
-                {circle_states["circle_map"][0] ? circle_states["circle_map"][0].map((result) =>  {         
+            {shape_states["shape_map"][0] ?    
+                <div style={{ display: "grid", gridTemplateRows: `repeat(${display_map().length}, auto)`, gridTemplateColumns: `1fr`}}> 
+                    {display_map().map((result) =>  {         
                         return(
-                            <div key={result.key}>
-                                {result.obj}
+                            <div style={{ gridTemplateRows: 1, gridTemplateColumns: 'repeat(' + result.obj.length + ', ' + get_spacing() + ')'}} key={result.key} className={row_class}>
+                                {result.obj.map((result2) => {
+                                    return(
+                                        <div key={result2.key}>
+                                            {result2.obj}
+                                        </div>
+                                    )
+                                })}
                             </div>
                         )
-                    })
-                : null}
-            </div> 
-            <div className="grid place-items-center grid-rows-1 grid-cols-2 gap-12">
-                <div>
-                </div>
-                <div>
-                {/* doesnt exist in final */}
-                <button className="mt-12" onClick={e => trigger_test()}>Increment</button> 
-                {/* end doesnt exist in final */}
-                </div>
-            </div>
+                    })}
+                    <div className="grid place-items-end mt-96">
+                        <button className="text-4xl" onClick={e => trigger_test()}>Increment</button>
+                    </div>
+                </div>  
+            : null}
         </div>
     )
 }
