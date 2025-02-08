@@ -10,16 +10,21 @@ export default function Pie(props) {
     const [SymbolMap, setSymbolMap] = React.useState([])
     const [StyleList, setStyleList] = React.useState(null)
     const [Triggered, setTriggered] = React.useState(false)
+    const [DisplayedColor, setDisplayedColor] = React.useState("")
+    const [ColorArray, setColorArray] = React.useState([])
+    const [PercentArray, setPercentArray] = React.useState([])
+    const [TriggerArray, setTriggerArray] = React.useState([])
+    const [ColorLength, setColorLength] = React.useState(0)
 
     const shape_states = {"shape_array": [SymbolArray, setSymbolArray], "shape_map": [SymbolMap, setSymbolMap]}
+
+    const sections = Math.round(100 / props.base_states["current_color"][0].length)
 
 
 
     useEffect(() => {   
         read_file()
     }, [])
-
-    shape_states["shape_map"][0]
 
     useEffect(() => {
         if(shape_states["shape_map"][0].length > 0){
@@ -34,12 +39,11 @@ export default function Pie(props) {
 
     useEffect(() => {
         if(props.base_states["trigger"][0] && props.base_states["current_position"][0] > 0 && props.base_states["trigger_amount"][0] && Triggered){
-
             props.base_states["trigger_amount"][0] > 0 ? show_circles(true) : props.base_states["trigger_amount"][1](null)
             !props.base_states["trigger_amount"][0] ? props.base_states["trigger"][1](false) : null
-            // props.base_states["trigger"][1](false)
         }
     }, [props.base_states["trigger"][0], props.base_states["current_position"][0], props.base_states["trigger_amount"][0], Triggered])
+
 
 
     // Clears the circle array and map
@@ -55,9 +59,6 @@ export default function Pie(props) {
     // @param: N/A
     // @return: N/A
     function display_circles(){
-
-        // props.base_states["length_value"][0] = 100
-        // props.base_states["current_position"][1](100)
         props.base_states["restart"][1](false)
 
         clear_circles()
@@ -75,17 +76,55 @@ export default function Pie(props) {
     // @param 'condition': True if circle is to be green. False if it is to be red.
     // @return HTML Object: The div containing one circle
     function create_circle(condition, start = null){
+        let color_length = ColorArray.length == 0 ? 1 : ColorArray.length
+        let color = "gray"
         let style = {}
+        let percent_array = PercentArray
+        let shape = ""
+        let extra = 0
 
         style["--width"] = "5px" 
         style["--height"] = get_size()
 
-        console.log(props.base_states["trigger_amount"][0])
+        condition ? percent_array.length < 1 ? percent_array.push(props.base_states["trigger_amount"][0]) : percent_array[percent_array.length-1] <= sections ? percent_array[percent_array.length-1] = percent_array[percent_array.length-1] + props.base_states["trigger_amount"][0] : percent_array.push(props.base_states["trigger_amount"][0]) : null
+        
+        for(let k=0; k<percent_array.length; k++){
+            if(percent_array[k] > sections && (k + 1) < percent_array.length){
+                extra = percent_array[k] - sections
+                percent_array[k] = sections
+                try{
+                    percent_array[k+1] = percent_array[k+1] + extra
+                }catch{}
+            }
+        }
 
+        if(percent_array.length > props.base_states["current_color"][0].length){
+            percent_array = percent_array.slice(percent_array.length - props.base_states["current_color"][0].length)
+            percent_array[percent_array.length-1] = sections
+        }  
 
-        condition ? style["--shape"] = get_color() + " 0% " + props.base_states["trigger_amount"][0]+ "%, gray " + props.base_states["trigger_amount"][0] + "% 100%" : style["--shape"] = "gray 0% 100%, transparent 100% 100%"
+        let percent = 0
+        for(let i=0; i<percent_array.length; i++){
+            percent = percent + percent_array[i]
+            percent > sections * (i + 1)? percent = sections * (i+1): null  
+            color = get_color(true, percent_array.length-1)[i]
+            i == 0 ? shape = color + " 0% " + percent + "%" : shape = shape + ", " + color + " 0% " + percent + "%"
+        }
 
-        // condition ? style["--bgcolor"] = get_color() : style["--bgcolor"] = "#c2c2c2"
+        let gray_value = 0
+        for(let k=0; k<percent_array.length; k++){
+            gray_value = gray_value + percent_array[k]
+            gray_value > sections * (k + 1) ? gray_value = sections * (k + 1): null
+        }
+
+        shape = shape + ", gray " + gray_value + "% 100%"
+
+        style["--shape"] = shape
+
+        !condition ?  style["--shape"] = "gray 0% 100%, transparent 100% 100%" : null
+
+        percent_array.length > 0 && percent_array[0] != 0 ? setPercentArray(percent_array) : null
+        setColorLength(color_length)
 
         return (
             <div className="w-8">
@@ -103,12 +142,8 @@ export default function Pie(props) {
     function show_circles(condition, start = null){
         let trigger_amount = props.base_states["trigger_amount"][0]
         trigger_amount = trigger_amount - 1
-        console.log(trigger_amount)
         let pos = props.base_states["current_position"][0]
         let shown_arr = []
-
-        console.log("shown arr")
-        console.log(shown_arr)
 
         !start ? shown_arr[0] = create_circle(condition) : shown_arr.push(create_circle(condition, start))
 
@@ -125,23 +160,38 @@ export default function Pie(props) {
         condition ? pos = pos - 1 : null
         props.base_states["current_position"][1](pos)
         setTriggered(false)
-        // props.base_states["trigger_amount"][1](trigger_amount)
     }
 
 
     function trigger_test(){
+        let trigger_array = TriggerArray
+        let amount = null
         props.base_states["trigger"][1](true)
-        props.base_states["trigger_amount"][1](props.base_states["trigger_amount"][0] + Math.round(Math.random(20) * 10))
+
+        amount = Math.round(Math.random(20) * 20)
+        props.base_states["trigger_amount"][1](amount)
         setTriggered(true)
+        amount != 0 ? trigger_array.push(amount) : null
+        setTriggerArray(trigger_array)
     }
 
 
-    function get_color(){
-        let value = Math.round((props.base_states["trigger_amount"][0]/100) * props.base_states["current_color"][0].length)
+    function get_color(check, spot){
+        let color_array = ColorArray
+        let color = null
 
-        value > props.base_states["current_color"][0].length - 1 ? value = props.base_states["current_color"][0].length  : null
+        color_array.length < 1 && spot > 0 ? spot = 0 : null
 
-        return props.base_states["current_color"][0][value - 1]
+        if(check){
+            !color_array.includes(props.base_states["current_color"][0][spot]) ?  color_array.push(props.base_states["current_color"][0][spot]) : null
+
+            setDisplayedColor(color)
+            setColorArray(color_array)
+
+            return color_array
+        }
+
+        return props.base_states["current_color"][0][spot]
     }
 
 
