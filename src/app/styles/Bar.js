@@ -13,9 +13,6 @@ export default function Bar(props) {
 
     const shape_states = {"shape_array": [SymbolArray, setSymbolArray], "shape_map": [SymbolMap, setSymbolMap]}
 
-    const row_size = props.base_states["size"] < 4 ? 20 : 10
-
-    const row_class = props.base_states["size"] == 1 ? "grid mt-12" : "grid mt-24"
 
 
     useEffect(() => {   
@@ -28,12 +25,11 @@ export default function Bar(props) {
 
     useEffect(() => {
         if(props.base_states["trigger"][0] && props.base_states["current_position"][0] > 0 && props.base_states["trigger_amount"][0] && Triggered){
-
             props.base_states["trigger_amount"][0] > 0 ? show_circles(true) : props.base_states["trigger_amount"][1](null)
             !props.base_states["trigger_amount"][0] ? props.base_states["trigger"][1](false) : null
-            // props.base_states["trigger"][1](false)
         }
     }, [props.base_states["trigger"][0], props.base_states["current_position"][0], props.base_states["trigger_amount"][0], Triggered])
+
 
 
     // Clears the circle array and map
@@ -49,6 +45,7 @@ export default function Bar(props) {
     // @param: N/A
     // @return: N/A
     function display_circles(){
+        let i = 0
 
         props.base_states["length_value"][0] = 100
         props.base_states["current_position"][1](100)
@@ -56,19 +53,17 @@ export default function Bar(props) {
 
         clear_circles()
 
-        let i = 0
         while(i < props.base_states["length_value"][0]){
             show_circles(false, true)
             i++
-        }  
-        
+        }    
     }
 
 
     // Creates a circle to be added to the array. Called whenever a change is made (set to gray, red, green etc...). Used in combination with 'show_circles' function.
     // @param 'condition': True if circle is to be green. False if it is to be red.
     // @return HTML Object: The div containing one circle
-    function create_circle(condition, start = null){
+    function create_circle(condition){
         let style = {}
 
         style["--width"] = "5px" 
@@ -90,13 +85,11 @@ export default function Bar(props) {
     // @param 'start': Only set if it is the initial display, null if otherwise
     // @return: N/A 
     function show_circles(condition, start = null){
-        let trigger_amount = props.base_states["trigger_amount"][0]
-        trigger_amount = trigger_amount - 1
-        console.log(trigger_amount)
+        let trigger_amount = props.base_states["trigger_amount"][0] - 1
         let pos = props.base_states["current_position"][0]
         let shown_arr = shape_states["shape_array"][0]
 
-        !start ? shown_arr[Math.abs(props.base_states["length_value"][0] - props.base_states["current_position"][0])] = create_circle(condition) : shown_arr.push(create_circle(condition, start))
+        !start ? shown_arr[Math.abs(props.base_states["length_value"][0] - props.base_states["current_position"][0])] = create_circle(condition) : shown_arr.push(create_circle(condition))
 
         const shape_map = shown_arr.map((name, index) => {
             return {
@@ -165,7 +158,6 @@ export default function Bar(props) {
                     <button className="text-4xl" onClick={e => trigger_test()}>Increment</button>
                 </div>
             </div> 
-
         </div>
     )
 }

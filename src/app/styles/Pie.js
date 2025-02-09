@@ -10,16 +10,16 @@ export default function Pie(props) {
     const [SymbolMap, setSymbolMap] = React.useState([])
     const [StyleList, setStyleList] = React.useState(null)
     const [Triggered, setTriggered] = React.useState(false)
-    const [DisplayedColor, setDisplayedColor] = React.useState("")
     const [ColorArray, setColorArray] = React.useState([])
     const [PercentArray, setPercentArray] = React.useState([])
     const [TriggerArray, setTriggerArray] = React.useState([])
-    const [ColorLength, setColorLength] = React.useState(0)
+
 
     const shape_states = {"shape_array": [SymbolArray, setSymbolArray], "shape_map": [SymbolMap, setSymbolMap]}
 
     const sections = Math.round(100 / props.base_states["current_color"][0].length)
 
+    const base_color = "#ebebeb"
 
 
     useEffect(() => {   
@@ -59,29 +59,30 @@ export default function Pie(props) {
     // @param: N/A
     // @return: N/A
     function display_circles(){
+        let i = 0
+
         props.base_states["restart"][1](false)
 
         clear_circles()
 
-        let i = 0
         while(i < props.base_states["length_value"][0]){
             show_circles(false, true)
             i++
         }  
-        
     }
 
 
     // Creates a circle to be added to the array. Called whenever a change is made (set to gray, red, green etc...). Used in combination with 'show_circles' function.
     // @param 'condition': True if circle is to be green. False if it is to be red.
     // @return HTML Object: The div containing one circle
-    function create_circle(condition, start = null){
-        let color_length = ColorArray.length == 0 ? 1 : ColorArray.length
-        let color = "gray"
+    function create_circle(condition){
+        let color = base_color
         let style = {}
         let percent_array = PercentArray
         let shape = ""
         let extra = 0
+        let percent = 0
+        let gray_value = 0
 
         style["--width"] = "5px" 
         style["--height"] = get_size()
@@ -103,7 +104,6 @@ export default function Pie(props) {
             percent_array[percent_array.length-1] = sections
         }  
 
-        let percent = 0
         for(let i=0; i<percent_array.length; i++){
             percent = percent + percent_array[i]
             percent > sections * (i + 1)? percent = sections * (i+1): null  
@@ -111,20 +111,19 @@ export default function Pie(props) {
             i == 0 ? shape = color + " 0% " + percent + "%" : shape = shape + ", " + color + " 0% " + percent + "%"
         }
 
-        let gray_value = 0
         for(let k=0; k<percent_array.length; k++){
             gray_value = gray_value + percent_array[k]
             gray_value > sections * (k + 1) ? gray_value = sections * (k + 1): null
         }
 
-        shape = shape + ", gray " + gray_value + "% 100%"
+        shape = shape + ", " + base_color + " " + gray_value + "% 100%"
 
         style["--shape"] = shape
 
-        !condition ?  style["--shape"] = "gray 0% 100%, transparent 100% 100%" : null
+        !condition ?  style["--shape"] = base_color + " 0% 100%, transparent 100% 100%" : null
 
         percent_array.length > 0 && percent_array[0] != 0 ? setPercentArray(percent_array) : null
-        setColorLength(color_length)
+        
 
         return (
             <div className="w-8">
@@ -140,12 +139,10 @@ export default function Pie(props) {
     // @param 'start': Only set if it is the initial display, null if otherwise
     // @return: N/A 
     function show_circles(condition, start = null){
-        let trigger_amount = props.base_states["trigger_amount"][0]
-        trigger_amount = trigger_amount - 1
         let pos = props.base_states["current_position"][0]
         let shown_arr = []
 
-        !start ? shown_arr[0] = create_circle(condition) : shown_arr.push(create_circle(condition, start))
+        shown_arr.push(create_circle(condition))
 
         const shape_map = shown_arr.map((name, index) => {
             return {
@@ -166,9 +163,9 @@ export default function Pie(props) {
     function trigger_test(){
         let trigger_array = TriggerArray
         let amount = null
-        props.base_states["trigger"][1](true)
 
-        amount = Math.round(Math.random(20) * 20)
+        props.base_states["trigger"][1](true)
+        amount = Math.round(Math.random(10) * 10)
         props.base_states["trigger_amount"][1](amount)
         setTriggered(true)
         amount != 0 ? trigger_array.push(amount) : null
@@ -178,14 +175,12 @@ export default function Pie(props) {
 
     function get_color(check, spot){
         let color_array = ColorArray
-        let color = null
 
         color_array.length < 1 && spot > 0 ? spot = 0 : null
 
         if(check){
             !color_array.includes(props.base_states["current_color"][0][spot]) ?  color_array.push(props.base_states["current_color"][0][spot]) : null
 
-            setDisplayedColor(color)
             setColorArray(color_array)
 
             return color_array
