@@ -4,7 +4,9 @@ import { v4 as uuidv4 } from 'uuid';
 import '../helpers/symbols.css'
 import {global_functions} from '../helpers/functions'
 
-// Creates the display for the 'Symbols' progress bar
+
+
+
 export default function Symbols(props) {
     const [SymbolArray, setSymbolArray] = React.useState([])
     const [SymbolMap, setSymbolMap] = React.useState([])
@@ -32,18 +34,12 @@ export default function Symbols(props) {
     }, [props.base_states["trigger"][0]])
 
 
-    // Clears the circle array and map
-    // @param: N/A
-    // @return: N/A
     function clear_circles(){
         shape_states["shape_array"][1]([])
         shape_states["shape_map"][1]([])
     }
 
 
-    // Starts the process to display the progress bar circles. First the circles are cleared, then the 'show_circles' function is called based on the needed length (LengthValue prop). 
-    // @param: N/A
-    // @return: N/A
     function display_circles(){
         props.base_states["restart"][1](false)
 
@@ -57,9 +53,6 @@ export default function Symbols(props) {
     }
 
 
-    // Creates a circle to be added to the array. Called whenever a change is made (set to gray, red, green etc...). Used in combination with 'show_circles' function.
-    // @param 'condition': True if circle is to be green. False if it is to be red.
-    // @return HTML Object: The div containing one circle
     function create_circle(condition, start = null){
         let style = {}
 
@@ -76,10 +69,6 @@ export default function Symbols(props) {
     }
 
 
-    // Creates all needed circles and adds them to the circle map. 
-    // @param 'condition': True if the circle is to be green, false if red
-    // @param 'start': Only set if it is the initial display, null if otherwise
-    // @return: N/A 
     function show_circles(condition, start = null){
         let pos = props.base_states["current_position"][0]
         let shown_arr = shape_states["shape_array"][0]
@@ -138,11 +127,6 @@ export default function Symbols(props) {
 
 
     function get_spacing(){
-        // if(props.base_states["size"] > 1){
-        //     return (props.base_states["size"] * 25).toString() + "px"
-        // }else if(props.base_states["size"] == 1){
-        //     return "25px"
-        // }
         if(props.base_states["size"]){
             return (props.base_states["size"] * 25).toString() + "px"
         }else if(props.base_states["size"] == 1){
@@ -178,7 +162,6 @@ export default function Symbols(props) {
                 temp_arr.push(display_arr.slice(0, display_arr.length))
                 display_arr = []
             }
-
         }
 
         const new_arr = temp_arr.map((name, index) =>  {         
@@ -190,6 +173,8 @@ export default function Symbols(props) {
 
         return new_arr
     }
+
+
 
 
     return(
@@ -209,14 +194,11 @@ export default function Symbols(props) {
                             </div>
                         )
                     })}
-                    <div className="grid place-items-end mt-96">
+                    {/* <div className="grid place-items-end mt-96">
                         <button className="text-4xl" onClick={e => trigger_test()}>Increment</button>
-                    </div>
+                    </div> */}
                 </div>  
             : null}
         </div>
     )
 }
-
-
-

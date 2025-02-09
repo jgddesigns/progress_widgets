@@ -4,7 +4,9 @@ import { v4 as uuidv4 } from 'uuid';
 import '../helpers/symbols.css'
 import {global_functions} from '../helpers/functions'
 
-// Creates the display for the 'Bar' progress bar
+
+
+
 export default function Meter(props) {
     const [SymbolArray, setSymbolArray] = React.useState([])
     const [SymbolMap, setSymbolMap] = React.useState([])
@@ -12,7 +14,6 @@ export default function Meter(props) {
     const [Triggered, setTriggered] = React.useState(true)
 
     const shape_states = {"shape_array": [SymbolArray, setSymbolArray], "shape_map": [SymbolMap, setSymbolMap]}
-
 
 
     useEffect(() => {   
@@ -31,19 +32,12 @@ export default function Meter(props) {
     }, [props.base_states["trigger"][0], props.base_states["current_position"][0], props.base_states["trigger_amount"][0], Triggered])
 
 
-
-    // Clears the circle array and map
-    // @param: N/A
-    // @return: N/A
     function clear_circles(){
         shape_states["shape_array"][1]([])
         shape_states["shape_map"][1]([])
     }
 
 
-    // Starts the process to display the progress bar circles. First the circles are cleared, then the 'show_circles' function is called based on the needed length (LengthValue prop). 
-    // @param: N/A
-    // @return: N/A
     function display_circles(){
         let i = 0
 
@@ -60,9 +54,6 @@ export default function Meter(props) {
     }
 
 
-    // Creates a circle to be added to the array. Called whenever a change is made (set to gray, red, green etc...). Used in combination with 'show_circles' function.
-    // @param 'condition': True if circle is to be green. False if it is to be red.
-    // @return HTML Object: The div containing one circle
     function create_circle(condition){
         let style = {}
 
@@ -80,10 +71,6 @@ export default function Meter(props) {
     }
 
 
-    // Creates all needed circles and adds them to the circle map. 
-    // @param 'condition': True if the circle is to be green, false if red
-    // @param 'start': Only set if it is the initial display, null if otherwise
-    // @return: N/A 
     function show_circles(condition, start = null){
         let trigger_amount = props.base_states["trigger_amount"][0] - 1
         let pos = props.base_states["current_position"][0] - 1
@@ -142,6 +129,8 @@ export default function Meter(props) {
     }
 
 
+
+
     return(
         <div>
             <div className="mt-[150px] grid place-items-center" style={{ gridTemplateRows: 'repeat(' + props.base_states["length_value"][0] + ', 4px)' }}>
@@ -153,11 +142,10 @@ export default function Meter(props) {
                         )
                     })
                 : null}
-                <div className="grid place-items-end mt-24 mb-24">
+                {/* <div className="grid place-items-end mt-96">
                     <button className="text-4xl" onClick={e => trigger_test()}>Increment</button>
-                </div>
+                </div> */}
             </div> 
         </div>
     )
 }
-

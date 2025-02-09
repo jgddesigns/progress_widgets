@@ -1,78 +1,58 @@
 'use client'
 import React, {useEffect} from 'react';
-import ProgressBar from './lists/ProgressBar';
+import {global_functions} from './helpers/functions'
+// import '../helpers/symbols.css';
+import './ProgressBars.module.css';
+import Bar from './styles/Bar';
+import Meter from './styles/Meter';
+import Pie from './styles/Pie';
+import Symbols from './styles/Symbols'
 
-export default function Home() {
-  const [Trigger, setTrigger] = React.useState(false)
-  const [TriggerAmount, setTriggerAmount] = React.useState(15)
 
-  return (
-    <div className="mt-12">
-      {/* <ProgressBar LengthValue={225} Type="symbols" Style="trapezoids" Trigger={[Trigger, setTrigger]} Size={3} Color={["#e63946", "#457b9d", "#f4a261", "#2a9d8f", "#9b5de5", "#ff6b6b", "#1d3557", "#ff9f1c", "#6a0572", "#52b788", "#8338ec", "#ffbe0b", "#3a86ff", "#06d6a0", "#ef476f", "#8ac926", "#ff595e", "#1982c4", "#d81159", "#ffca3a", "#c1121f", "#4361ee", "#f77f00", "#8f2d56", "#118ab2", "#9d4edd", "#e36414", "#00a896", "#bc4749", "#6a994e", "#ff007f", "#0a9396", "#aacc00", "#db3069", "#3d348b"]}/> */}
-      {/* <ProgressBar Type="bar" Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Size={5} Color={["red", "orange", "yellow", "lime", "green", "#e63946", "#457b9d", "#f4a261", "#2a9d8f", "#9b5de5", "#ff6b6b", "#1d3557", "#ff9f1c", "#6a0572", "#52b788", "#8338ec", "#ffbe0b", "#3a86ff", "#06d6a0", "#ef476f", "#8ac926", "#ff595e", "#1982c4", "#d81159", "#ffca3a", "#c1121f", "#4361ee", "#f77f00", "#8f2d56", "#118ab2", "#9d4edd", "#e36414", "#00a896", "#bc4749", "#6a994e", "#ff007f", "#0a9396", "#aacc00", "#db3069", "#3d348b"]}/> */}
-      <ProgressBar Type="pie" Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Size={4} Color={["lime", "purple"]}/>
+
+
+export default function ProgressBars (props) {
+    const [Restart, setRestart] = React.useState(false)
+    const [CurrentPosition, setCurrentPosition] = React.useState(props.Type == "bar" || props.Type == "meter" ? 100 : props.Type == "pie" ? 1 : props.LengthValue ?  props.LengthValue : 10)
+    const [CurrentColor, setCurrentColor] = React.useState(null) 
+
+
+    const base_states = {"restart": [Restart, setRestart], "current_position": [CurrentPosition, setCurrentPosition], "length_value": [props.Type == "bar" || props.Type == "meter" ? 100 : props.Type == "pie" ? 1 : props.LengthValue ?  props.LengthValue : 100], "current_color": [CurrentColor ? CurrentColor : ["red", "yellow", "green"], setCurrentColor], "size": props.Size ? props.Size : "3", "trigger": props.Trigger, "trigger_amount": props.TriggerAmount, "style": props.Type =="symbols" ? props.Style ? props.Style : "circles" : "squares"} 
+
+    const types = {"bar": <Bar base_states={base_states}/>, "meter": <Meter base_states={base_states}/>, "pie": <Pie base_states={base_states}/>, "symbols": <Symbols base_states={base_states}/>}
+
+
+    useEffect(() => {
+        !props.CurrentColor ? setCurrentColor(global_functions["is_color"](props.Color ? props.Color : ["red", "orange", "yellow", "lime", "green"])) : null
+    }, [props.CurrentColor])
+
+
+
+    function get_type(){
+        if(!check_trigger()){
+            return <div className="mt-48 text-2xl">'Trigger' prop is not passed correctly. Ensure it is a set of state variables [variable, setVariable]. See README file for further details.</div>
+        }
+        if(types[props.Type]){
+            return types[props.Type]
+        }else{
+            return types["bar"]
+        }
+    }
+
+
+    function check_trigger(){
+        if(!props.Trigger || props.Trigger.length != 2){ //need to check if each is a proper state variable
+            return false
+        }
+        return true
+    }
+
+
+
+
+  return(
+    <div className="grid place-items-center">
+        {get_type()}
     </div>
-  );
+  )
 }
-
-
-
-
-// 'Trigger' PROPS IS TO INCREMENT PROGRESS BAR  **required
-  // pass variable event that is intended to increment the bar. Accepts a set state array only in this format: 
-
-      // [variable, setVariable]
-
-  // If this is not set correctly the component will not function.
-
-  // For 'bar' type, each trigger increments bar 1%. Trigger multiple times to advance for other percentages. (see below)
-
-
-// 'TriggerAmount' IS HOW MUCH THE BAR ADVANCES (15 = 15%, 1:1 ratio) 
-  //Not needed for 'shapes' prop
-
-
-// 'Size' SETS THE COMPONENT DISPLAY SIZE. ACCEPTS RANGE FROM 1 (smallest) - 5 (largest)
-
-  //For 'bar' type, length is always 100 and increment is based on percentage. Each increment is 1%. 
-
-
-
-// 'Type' ACCEPTS THE TYPE OF BAR TO DISPLAY.
-  //defaults to 'bar' CHANGE WHEN BAR IS SET
-
-  // bar
-  // meter
-  // pie
-  // symbols
-
-
-  // 'Style' OPTIONS DEPENDS ON TYPE PROP. ONLY RELEVANT FOR 'symbols' TYPE.
-    //defaults to 'circles'
-
-    // SYMBOLS
-    // ===========
-    // circles
-    // squares
-    // stars
-    // hearts
-    // moons
-    // hexagons
-    // diamonds
-    // trapezoids
-    // arrows_left
-    // arrows_right
-    // arrows_up
-    // arrows_down
-
-
-
-// 'LengthValue' SETS AMOUNT OF SYMBOLS
-  // defaults to 10
-  // Max 250
-
-
-// 'Color' ACCEPTS ANY VALID CSS SYMBOL OR HEX VALUE
-  // defaults to ["red", "yellow", "green"]
-
-  // Must be in an array format <= LengthValue to display correctly. Color display will be divided equally based on amount of colors passed (size of array). If array size is greater than LengthValue, some colors will be skipped in the on-screen display.  
