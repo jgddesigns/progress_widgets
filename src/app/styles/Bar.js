@@ -1,8 +1,7 @@
 'use client'
 import React, {useEffect} from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import '../helpers/symbols.css'
-import {global_functions} from '../helpers/functions'
+import '../helpers/symbols.css';
 
 
 
@@ -10,27 +9,21 @@ import {global_functions} from '../helpers/functions'
 export default function Bar(props) {
     const [SymbolArray, setSymbolArray] = React.useState([])
     const [SymbolMap, setSymbolMap] = React.useState([])
-    const [StyleList, setStyleList] = React.useState(null)
-    const [Triggered, setTriggered] = React.useState(true)
 
 
     const shape_states = {"shape_array": [SymbolArray, setSymbolArray], "shape_map": [SymbolMap, setSymbolMap]}
 
 
-    useEffect(() => {   
-        read_file()
+    useEffect(() => {
+        display_circles() 
     }, [])
 
     useEffect(() => {
-        StyleList ? display_circles() : null
-    }, [StyleList])
-
-    useEffect(() => {
-        if(props.base_states["trigger"][0] && props.base_states["current_position"][0] > 0 && props.base_states["trigger_amount"][0] && Triggered){
+        if(props.base_states["trigger"][0] && props.base_states["current_position"][0] > 0 && props.base_states["trigger_amount"][0]){
             props.base_states["trigger_amount"][0] > 0 ? show_circles(true) : props.base_states["trigger_amount"][1](null)
             !props.base_states["trigger_amount"][0] ? props.base_states["trigger"][1](false) : null
         }
-    }, [props.base_states["trigger"][0], props.base_states["current_position"][0], props.base_states["trigger_amount"][0], Triggered])
+    }, [props.base_states["trigger"][0], props.base_states["current_position"][0], props.base_states["trigger_amount"][0]])
 
 
     function clear_circles(){
@@ -95,13 +88,6 @@ export default function Bar(props) {
     }
 
 
-    function trigger_test(){
-        props.base_states["trigger"][1](true)
-        props.base_states["trigger_amount"][1](Math.round(Math.random(20) * 10))
-        setTriggered(true)
-    }
-
-
     function get_color(){
         let value = props.base_states["current_color"][0].length - Math.ceil(props.base_states["current_position"][0] / props.base_states["length_value"][0] * props.base_states["current_color"][0].length)
 
@@ -114,20 +100,6 @@ export default function Bar(props) {
             return (props.base_states["size"] * 15).toString() + "px"
         }
         return "45px"
-    }
-
-
-    async function read_file(){
-        var retrieved = null
-
-        const response = await fetch('styles/file_scan');
-        const retrieve = await response.json().then((data) => retrieved = data)
-
-        const promise = new Promise((resolve, reject) => {
-            resolve(global_functions["parse_file"](retrieved, ".", "{"))
-        }).then(result => {
-            setStyleList(result)
-        })  
     }
 
 
@@ -144,9 +116,6 @@ export default function Bar(props) {
                         )
                     })
                 : null}
-                {/* <div className="grid place-items-end mt-96">
-                    <button className="text-4xl" onClick={e => trigger_test()}>Increment</button>
-                </div> */}
             </div> 
         </div>
     )

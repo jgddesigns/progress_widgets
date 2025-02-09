@@ -2,7 +2,6 @@
 import React, {useEffect} from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import '../helpers/symbols.css'
-import {global_functions} from '../helpers/functions'
 
 
 
@@ -10,22 +9,17 @@ import {global_functions} from '../helpers/functions'
 export default function Pie(props) {
     const [SymbolArray, setSymbolArray] = React.useState([])
     const [SymbolMap, setSymbolMap] = React.useState([])
-    const [StyleList, setStyleList] = React.useState(null)
-    const [Triggered, setTriggered] = React.useState(false)
     const [ColorArray, setColorArray] = React.useState([])
     const [PercentArray, setPercentArray] = React.useState([])
-    const [TriggerArray, setTriggerArray] = React.useState([])
 
 
     const shape_states = {"shape_array": [SymbolArray, setSymbolArray], "shape_map": [SymbolMap, setSymbolMap]}
-
     const sections = Math.round(100 / props.base_states["current_color"][0].length)
-
     const base_color = "#ebebeb"
 
 
     useEffect(() => {   
-        read_file()
+        display_circles()
     }, [])
 
     useEffect(() => {
@@ -36,15 +30,11 @@ export default function Pie(props) {
     }, [shape_states["shape_map"][0]])
 
     useEffect(() => {
-        StyleList ? display_circles() : null
-    }, [StyleList])
-
-    useEffect(() => {
-        if(props.base_states["trigger"][0] && props.base_states["current_position"][0] > 0 && props.base_states["trigger_amount"][0] && Triggered){
+        if(props.base_states["trigger"][0] && props.base_states["current_position"][0] > 0 && props.base_states["trigger_amount"][0]){
             props.base_states["trigger_amount"][0] > 0 ? show_circles(true) : props.base_states["trigger_amount"][1](null)
             !props.base_states["trigger_amount"][0] ? props.base_states["trigger"][1](false) : null
         }
-    }, [props.base_states["trigger"][0], props.base_states["current_position"][0], props.base_states["trigger_amount"][0], Triggered])
+    }, [props.base_states["trigger"][0], props.base_states["current_position"][0], props.base_states["trigger_amount"][0]])
 
 
     function clear_circles(){
@@ -144,20 +134,7 @@ export default function Pie(props) {
 
         condition ? pos = pos - 1 : null
         props.base_states["current_position"][1](pos)
-        setTriggered(false)
-    }
-
-
-    function trigger_test(){
-        let trigger_array = TriggerArray
-        let amount = null
-
-        props.base_states["trigger"][1](true)
-        amount = Math.round(Math.random(10) * 10)
-        props.base_states["trigger_amount"][1](amount)
-        setTriggered(true)
-        amount != 0 ? trigger_array.push(amount) : null
-        setTriggerArray(trigger_array)
+        props.base_states["trigger"][1](false)
     }
 
 
@@ -186,21 +163,7 @@ export default function Pie(props) {
     }
 
 
-    async function read_file(){
-        var retrieved = null
-
-        const response = await fetch('styles/file_scan');
-        const retrieve = await response.json().then((data) => retrieved = data)
-
-        const promise = new Promise((resolve, reject) => {
-            resolve(global_functions["parse_file"](retrieved, ".", "{"))
-        }).then(result => {
-            setStyleList(result)
-        })  
-    }
-
-
-
+  
 
     return(
         <div>
@@ -213,9 +176,6 @@ export default function Pie(props) {
                         )
                     })
                 : null}
-                {/* <div className="grid place-items-end mt-96">
-                    <button className="text-4xl" onClick={e => trigger_test()}>Increment</button>
-                </div> */}
             </div> 
 
         </div>

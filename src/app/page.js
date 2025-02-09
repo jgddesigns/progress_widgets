@@ -1,7 +1,6 @@
 'use client'
 import React, {useEffect} from 'react';
 import {global_functions} from './helpers/functions'
-// import '../helpers/symbols.css';
 import './ProgressBars.module.css';
 import Bar from './styles/Bar';
 import Meter from './styles/Meter';
@@ -17,7 +16,7 @@ export default function ProgressBars (props) {
     const [CurrentColor, setCurrentColor] = React.useState(null) 
 
 
-    const base_states = {"restart": [Restart, setRestart], "current_position": [CurrentPosition, setCurrentPosition], "length_value": [props.Type == "bar" || props.Type == "meter" ? 100 : props.Type == "pie" ? 1 : props.LengthValue ?  props.LengthValue : 100], "current_color": [CurrentColor ? CurrentColor : ["red", "yellow", "green"], setCurrentColor], "size": props.Size ? props.Size : "3", "trigger": props.Trigger, "trigger_amount": props.TriggerAmount, "style": props.Type =="symbols" ? props.Style ? props.Style : "circles" : "squares"} 
+    const base_states = {"restart": [Restart, setRestart], "current_position": [CurrentPosition, setCurrentPosition], "length_value": [props.Type == "bar" || props.Type == "meter" ? 100 : props.Type == "pie" ? 1 : props.LengthValue ?  props.LengthValue : 10], "current_color": [CurrentColor ? CurrentColor : ["red", "yellow", "green"], setCurrentColor], "size": props.Size ? props.Size : "3", "trigger": props.Trigger, "trigger_amount": props.TriggerAmount, "style": props.Type =="symbols" ? props.Style ? props.Style : "circles" : "squares"} 
 
     const types = {"bar": <Bar base_states={base_states}/>, "meter": <Meter base_states={base_states}/>, "pie": <Pie base_states={base_states}/>, "symbols": <Symbols base_states={base_states}/>}
 

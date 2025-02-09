@@ -1,8 +1,7 @@
 'use client'
 import React, {useEffect} from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import '../helpers/symbols.css'
-import {global_functions} from '../helpers/functions'
+import '../helpers/symbols.css';
 
 
 
@@ -10,22 +9,17 @@ import {global_functions} from '../helpers/functions'
 export default function Symbols(props) {
     const [SymbolArray, setSymbolArray] = React.useState([])
     const [SymbolMap, setSymbolMap] = React.useState([])
-    const [StyleList, setStyleList] = React.useState(null)
+
 
     const shape_states = {"shape_array": [SymbolArray, setSymbolArray], "shape_map": [SymbolMap, setSymbolMap]}
-
     const row_size = props.base_states["size"] < 4 ? 20 : 10
-
     const row_class = props.base_states["size"] == 1 ? "grid mt-12" : "grid mt-24"
+    const styles = ["circles", "circle_fill", "squares", "bar", "meter", "stars", "hearts", "moons", "hexagons", "diamonds", "trapezoids", "arrows_right", "arrows_left", "arrows_up", "arrows_down"]
 
-
-    useEffect(() => {   
-        read_file()
-    }, [])
 
     useEffect(() => {
-        StyleList ? display_circles() : null
-    }, [StyleList])
+        display_circles() 
+    }, [])
 
     useEffect(() => {
         if(props.base_states["trigger"][0] && props.base_states["current_position"][0] > 0){
@@ -91,11 +85,6 @@ export default function Symbols(props) {
     }
 
 
-    function trigger_test(){
-        props.base_states["trigger"][1](true)
-    }
-
-
     function get_color(){
         let value = props.base_states["current_color"][0].length - Math.ceil(props.base_states["current_position"][0] / props.base_states["length_value"][0] * props.base_states["current_color"][0].length)
 
@@ -105,9 +94,7 @@ export default function Symbols(props) {
 
     function get_style(){
         try{
-            let temp_arr = StyleList
-
-            if(temp_arr && temp_arr.includes(props.base_states["style"])){
+            if(styles.includes(props.base_states["style"])){
                 return props.base_states["style"]
             }
 
@@ -133,20 +120,6 @@ export default function Symbols(props) {
             return "25px"
         }
         return "90px"
-    }
-
-
-    async function read_file(){
-        var retrieved = null
-
-        const response = await fetch('styles/file_scan');
-        const retrieve = await response.json().then((data) => retrieved = data)
-
-        const promise = new Promise((resolve, reject) => {
-            resolve(global_functions["parse_file"](retrieved, ".", "{"))
-        }).then(result => {
-            setStyleList(result)
-        })  
     }
 
 
@@ -194,9 +167,6 @@ export default function Symbols(props) {
                             </div>
                         )
                     })}
-                    {/* <div className="grid place-items-end mt-96">
-                        <button className="text-4xl" onClick={e => trigger_test()}>Increment</button>
-                    </div> */}
                 </div>  
             : null}
         </div>
