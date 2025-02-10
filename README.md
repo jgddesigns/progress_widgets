@@ -12,7 +12,7 @@ A simple Progress Widget component for use with React.js and Next.js. Customize 
 
 ![001](https://github.com/user-attachments/assets/966e415d-523e-4e19-b5f2-3cdabacf2912)
 ![002](https://github.com/user-attachments/assets/c389601c-a5ad-42ac-8e1f-be863c023586)
-![003](https://github.com/user-attachments/assets/9111e02e-c0e1-41c2-a123-9f1542b8af71)
+![003](https://github.com/user-attachments/assets/16c4d277-e3c1-4962-94e7-103d4e8b2fae)
 ![004](https://github.com/user-attachments/assets/4cea4300-ad13-46a3-8630-a85e710e6651)
 ![005](https://github.com/user-attachments/assets/ad8f2add-fce2-428c-8a8f-4dec22bfd38f)
 ![006](https://github.com/user-attachments/assets/166ce4a2-5e8e-414f-b808-95e457bfc159)
