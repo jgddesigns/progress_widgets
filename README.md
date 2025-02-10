@@ -10,15 +10,16 @@ A simple Progress Widget component for use with React.js and Next.js. Customize 
 
 
 
-![Screenshot (50)](https://github.com/user-attachments/assets/96bb0f5c-889f-43e7-909e-0ceb0d4d08e0)
-![Screenshot (51)](https://github.com/user-attachments/assets/d1e18442-e97d-4251-8c0e-cd3d14dd77e4)
-![Screenshot (52)](https://github.com/user-attachments/assets/9c0f9e0b-9dc7-4204-9f51-8c555dfc26bb)
-![Screenshot (54)](https://github.com/user-attachments/assets/516097a7-c8e7-4208-9e83-4673d0a78371)
-![Screenshot (55)](https://github.com/user-attachments/assets/cfc99b6d-14d7-426c-8482-68e5554fa862)
-![Screenshot (56)](https://github.com/user-attachments/assets/0fa97ada-c426-4663-8e8f-2783ecdeb568)
-![Screenshot (57)](https://github.com/user-attachments/assets/90b60c46-806f-452f-b9c0-b4ad8f6aa436)
-![Screenshot (58)](https://github.com/user-attachments/assets/fc97ef99-4dc0-433e-82d3-d133b66dbe20)
-![Screenshot (60)](https://github.com/user-attachments/assets/94276920-f5af-4baf-b49e-48d48146b89f)
+![001](https://github.com/user-attachments/assets/966e415d-523e-4e19-b5f2-3cdabacf2912)
+![002](https://github.com/user-attachments/assets/d9fa0f5d-2b40-4b9c-aadd-7e7ef4798c6d)
+![003](https://github.com/user-attachments/assets/460ef367-a8f2-4096-8cf5-0033bebff20e)
+![004](https://github.com/user-attachments/assets/4cea4300-ad13-46a3-8630-a85e710e6651)
+![005](https://github.com/user-attachments/assets/ad8f2add-fce2-428c-8a8f-4dec22bfd38f)
+![006](https://github.com/user-attachments/assets/90e106fb-ce39-4fce-8432-77e8e5f4243b)
+![007](https://github.com/user-attachments/assets/31fef177-bbde-4921-897d-8d1921f659b3)
+![008](https://github.com/user-attachments/assets/2675c401-20ab-4f1f-a229-07f669228bf3)
+![009](https://github.com/user-attachments/assets/535bbcb4-7bbf-4bf3-84a7-531b5c2c574c)
+
 
 
 
