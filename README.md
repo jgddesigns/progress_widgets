@@ -17,8 +17,8 @@ Progress Widget component for use with React.js and Next.js. Customize size, col
 ![004-a](https://github.com/user-attachments/assets/17770557-ae5c-4bec-a43a-2c304bdbe6c0)
 ![005-a](https://github.com/user-attachments/assets/2f6a5d6f-d2be-41ea-aa1c-623442a0f804)
 ![006-a](https://github.com/user-attachments/assets/585b793a-c235-49f5-8ea6-bee2fb98e19e)
-![007-a](https://github.com/user-attachments/assets/b008d5d8-0ad1-40db-84dc-2013ed7ff6d0)
-![008-a](https://github.com/user-attachments/assets/1a0788e5-283b-4720-afb5-449744efb75d)
+![007-a](https://github.com/user-attachments/assets/22f4f8a5-3f84-440a-b24b-34dd072e9711)
+![008-a](https://github.com/user-attachments/assets/fbce413a-134c-4664-91f0-11499bc39bad)
 ![009-a](https://github.com/user-attachments/assets/b90f0722-5fbc-45b4-bc92-c5cf938895f4)
 
 
