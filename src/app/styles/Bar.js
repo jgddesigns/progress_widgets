@@ -113,8 +113,7 @@ export default function Bar(props) {
             <div className="grid grid-auto-rows">
                 <div className="grid place-items-center" style={{marginTop: "20%", marginBottom: "15%", fontSize: "18px"}}>
                     <div>
-                        {/* {props.base_states["title"]} */}
-                        My Progress Bar 
+                        {props.base_states["title"]}
                     </div>
                 </div>
             </div>

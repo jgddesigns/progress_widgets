@@ -152,10 +152,9 @@ export default function Symbols(props) {
 
     return(
         <div className="grid grid-auto-rows">
-            <div className="grid place-items-center" style={{marginTop: "10%", marginBottom: "10%", fontSize: "18px"}}>
+            <div className="grid place-items-center" style={{marginTop: "10%", marginBottom: "10%", fontSize: "12px"}}>
                 <div>
-                    {/* {props.base_states["title"]} */}
-                    My Progress Symbols 
+                    {props.base_states["title"]}
                 </div>
             </div>
             <div>

@@ -109,8 +109,7 @@ export default function Meter(props) {
             <div className="grid grid-auto-rows">
                 <div className="grid place-items-center" style={{marginTop: "20%", marginBottom: "35%", fontSize: "18px"}}>
                     <div>
-                        {/* {props.base_states["title"]} */}
-                        My Progress Meter
+                        {props.base_states["title"]}
                     </div>
                 </div>
             </div>
