@@ -10,22 +10,56 @@ Progress Widget component for use with React.js and Next.js. Customize size, col
 
 
 
+<ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Bar" Type="bar" Color={["red", "orange", "yellow", "lime", "green"]} Size={4}/>
 
 ![001-a](https://github.com/user-attachments/assets/6d9a5018-65d6-4847-9013-441714c52e89)
+
+
+
+<ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Meter" Type="meter" Color={["red", "orange", "yellow", "lime", "green"]} Size={3}/>
+
 ![002-a](https://github.com/user-attachments/assets/73917779-8cf9-4bcc-8875-de104c45e5f9)
+
+
+
+<ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Pie" Type="pie" Color={["red", "orange", "yellow", "lime", "green"]} Size={5}/>
+
 ![003-a](https://github.com/user-attachments/assets/c5016b58-4b27-4104-9f5a-8cef37004d79)
+
+
+
+<ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Symbols" Type="symbols" Color={["red", "orange", "yellow", "lime", "green"]} Size={2} Style="arrows_right" LengthValue={10}/>
+
 ![004-a](https://github.com/user-attachments/assets/17770557-ae5c-4bec-a43a-2c304bdbe6c0)
+
+
+
+<ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Symbols" Type="symbols" Color={["red", "orange", "yellow", "lime", "green"]} Size={2} Style="stars" LengthValue={10}/>
+
 ![005-a](https://github.com/user-attachments/assets/2f6a5d6f-d2be-41ea-aa1c-623442a0f804)
+
+
+
+<ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Symbols" Type="symbols" Color={["#eb9234", "#ebab34", "#f0bd3c", "#f0c65b"]} Size={3} Style="diamonds" LengthValue={7}/>
+
 ![006-a](https://github.com/user-attachments/assets/585b793a-c235-49f5-8ea6-bee2fb98e19e)
 
 
-<ProgressWidgets Title="My Progress Symbols" Type="bar" Style="diamonds" Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Size={2} Color={["darkgreen", "green", "yellowgreen", "lime", "springgreen", "palegreen"]}/> 
+
+<ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Bar" Type="bar" Color={["darkgreen", "green", "yellowgreen", "lime", "springgreen", "palegreen"]} Size={3}/> 
 
 ![007-a](https://github.com/user-attachments/assets/22f4f8a5-3f84-440a-b24b-34dd072e9711)
 
 
 
+<ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Meter" Type="meter" Color={["blue", "turquoise", "lightblue", "skyblue"]} Size={2}/>
+
 ![008-a](https://github.com/user-attachments/assets/fbce413a-134c-4664-91f0-11499bc39bad)
+
+
+
+<ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Pie" Type="pie" Color={["red", "orange", "yellow", "lime", "green", "#e63946", "#457b9d", "#f4a261", "#2a9d8f", "#9b5de5", "#ff6b6b", "#1d3557", "#ff9f1c", "#6a0572", "#52b788", "#8338ec", "#ffbe0b", "#3a86ff", "#06d6a0", "#ef476f", "#8ac926", "#ff595e", "#1982c4", "#d81159", "#ffca3a", "#c1121f", "#4361ee", "#f77f00", "#8f2d56", "#118ab2", "#9d4edd", "#e36414", "#00a896", "#bc4749", "#6a994e", "#ff007f", "#0a9396", "#aacc00", "#db3069", "#3d348b"]} Size={5}/>
+
 ![009-a](https://github.com/user-attachments/assets/b90f0722-5fbc-45b4-bc92-c5cf938895f4)
 
 
@@ -118,11 +152,11 @@ Props Detailed:
 
         Examples:
 
-            Color=["#000fff", "#123abc", "000fff", "#ea45ca"]
+            Color=["#000fff", "#123abc", "#000fff", "#ea45ca"]
 
             Color=["blue", "turqoise", "aqua", "sky-blue"]
 
-            Color=["blue", "turqoise", "000fff", "#ea45ca"]
+            Color=["blue", "turqoise", "#000fff", "#ea45ca"]
 
 
 
