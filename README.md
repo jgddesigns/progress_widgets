@@ -1,36 +1,268 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+EZ Radar Chart for React.js
 
-## Getting Started
+By Jason Dunn 
 
-First, run the development server:
+Github: https://www.github.com/jgddesigns
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Contact: jaygeorgedunn@gmail.com
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A simple Progress Widget component for use with React.js and Next.js. Customize size, color and progress sections. Bar, Meter, Pie and Symbol Widgets available.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<!-- ![003](https://github.com/user-attachments/assets/173665d3-1689-436b-913f-1abc3f4e50af)
+![002](https://github.com/user-attachments/assets/875aa8db-692d-4aff-9ba9-f6cc190c7a2d)
+![001](https://github.com/user-attachments/assets/48875049-cedd-4e42-9be0-f66333a5690e) -->
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Getting Started:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    From Terminal 
+        npm install progress-widgets
 
-## Deploy on Vercel
+    Import Line
+        import ProgressWidgets from 'progress-widgets'
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+Component Example:
+
+      <ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Symbols Widget" Type="symbols" Color={["red", "orange", "yellow", "lime", "green"]}  Size={4} LengthValue={12} Style="stars"/>  
+
+
+Props Detailed:
+
+
+    Trigger (required)
+
+        A React state-variable set that holds a variable which triggers the movement of the current widget. The variable moves the widget when set to 'true'. The state does not need to be set to 'false' on the project end.
+
+        Example:
+
+            Trigger={[MyTrigger, setMyTrigger]}
+
+
+    TriggerAmount (required)
+
+        A React state-variable set that holds a variable containing the current percentage at which the widget is intended to increment. The percentage needs to be set prior to setting the Trigger state to 'true'.
+
+        Example:
+
+            TriggerAmount={[MyTriggerAmount, setMyTriggerAmount]}
+
+ 
+    Title (optional)
+
+        A string holding the title of the chart.
+
+        Defaults to no title if prop is not set.
+
+        Example:
+
+            Title="My Progress Widget"
+
+
+    Type (optional)
+
+        A string containing the type of widget. 
+
+        Choices:
+
+            bar
+            meter
+            pie
+            symbols
+
+        Defaults to "bar" if prop is not set.
+
+        Examples:
+
+            Type="meter"
+
+            Type="Meter"
+
+            Type="METER"
+
+            Type="MeTeR"
+
+
+    Color (optional)
+
+        An array containing the colors intended to be used.
+
+        In bar, meter, and pie types, the number of sections is dependent on the amount of colors in the array.
+
+        Accepts:
+
+            Hex Value: '#000fff'
+                or
+            CSS Color: 'green'
+
+        Defaults to ["red", "yellow", "green"] if prop is not set.
+
+        Examples:
+
+            Color=[]"#000fff"
+
+            Color="#a2d4cb"
+
+            Color="green"
+
+            Color="aqua"
+
+
+    Size (optional)
+
+        Ranges from extra small to extra large using number values 1-5.
+
+        Defaults to 3 (medium) if prop is not set.
+
+        Example:
+
+            Size={4}
+
+
+    LengthValue (optional, 'symbols' type only)
+
+        Number value that sets the amount of symbols to be displayed.
+
+        Defaults to 10 if prop is not set.
+
+        Example:
+
+            LengthValue={25}
+
+    
+    Style (optional, 'symbols' type only)
+
+        A string describing the style of symbol used in the 'symbols' widget. 
+
+        Choices:
+
+            circles 
+            squares 
+            bar 
+            meter 
+            stars 
+            hearts 
+            moons 
+            hexagons 
+            diamonds 
+            trapezoids
+            arrows_right
+            arrows_left
+            arrows_up
+            arrows_down
+
+        Defaults to "squares" if prop is not set.
+
+        Examples:
+
+            Style="trapezoids"
+
+
+
+
+
+
+MIT License
+
+Copyright (c) 2025 Jason Dunn
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 'Trigger' PROPS IS TO INCREMENT PROGRESS BAR  **required
+  // pass variable event that is intended to increment the bar. Accepts a set state array only in this format: 
+
+      // [variable, setVariable]
+
+  // If this is not set correctly the component will not function.
+
+  // For 'bar' type, each trigger increments bar 1%. Trigger multiple times to advance for other percentages. (see below)
+
+
+// 'TriggerAmount' IS HOW MUCH THE BAR ADVANCES (15 = 15%, 1:1 ratio) 
+  //Not needed for 'shapes' prop
+
+
+// 'Size' SETS THE COMPONENT DISPLAY SIZE. ACCEPTS RANGE FROM 1 (smallest) - 5 (largest)
+
+  //For 'bar' type, length is always 100 and increment is based on percentage. Each increment is 1%. 
+
+
+
+// 'Type' ACCEPTS THE TYPE OF BAR TO DISPLAY.
+  //defaults to 'bar' CHANGE WHEN BAR IS SET
+
+  // bar
+  // meter
+  // pie
+  // symbols
+
+
+  // 'Style' OPTIONS DEPENDS ON TYPE PROP. ONLY RELEVANT FOR 'symbols' TYPE.
+    //defaults to 'circles'
+
+    // SYMBOLS
+    // ===========
+    // circles
+    // squares
+    // stars
+    // hearts
+    // moons
+    // hexagons
+    // diamonds
+    // trapezoids
+    // arrows_left
+    // arrows_right
+    // arrows_up
+    // arrows_down
+
+
+
+// 'LengthValue' SETS AMOUNT OF SYMBOLS
+  // defaults to 10
+  // Max 250
+
+
+// 'Color' ACCEPTS ANY VALID CSS SYMBOL OR HEX VALUE
+  // defaults to ["red", "yellow", "green"]
+
+  // Must be in an array format <= LengthValue to display correctly. Color display will be divided equally based on amount of colors passed (size of array). If array size is greater than LengthValue, some colors will be skipped in the on-screen display.  

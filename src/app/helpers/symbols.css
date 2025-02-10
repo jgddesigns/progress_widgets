@@ -1,22 +1,8 @@
-.circles{
-    width: var(--size);
-    height: var(--size);
-    background-color: var(--bgcolor);
-    border-radius: 50%;
-}
-
 .circle_fill{
     border-radius: 50%;
     background: conic-gradient(var(--shape));
     width: 150px;
     height: 150px;
-}
-
-.squares{
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    width: var(--size);
-    height: var(--size);
-    background-color: var(--bgcolor);
 }
 
 .bar{
@@ -30,6 +16,20 @@
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     width: var(--width);
     height: var(--height);
+    background-color: var(--bgcolor);
+}
+
+.circles{
+    width: var(--size);
+    height: var(--size);
+    background-color: var(--bgcolor);
+    border-radius: 50%;
+}
+
+.squares{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    width: var(--size);
+    height: var(--size);
     background-color: var(--bgcolor);
 }
 

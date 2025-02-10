@@ -14,7 +14,7 @@ export default function Symbols(props) {
     const shape_states = {"shape_array": [SymbolArray, setSymbolArray], "shape_map": [SymbolMap, setSymbolMap]}
     const row_size = props.base_states["size"] < 4 ? 20 : 10
     const row_class = props.base_states["size"] == 1 ? "grid mt-12" : "grid mt-24"
-    const styles = ["circles", "circle_fill", "squares", "bar", "meter", "stars", "hearts", "moons", "hexagons", "diamonds", "trapezoids", "arrows_right", "arrows_left", "arrows_up", "arrows_down"]
+    const styles = ["circles", "squares", "stars", "hearts", "moons", "hexagons", "diamonds", "trapezoids", "arrows_right", "arrows_left", "arrows_up", "arrows_down"]
 
 
     useEffect(() => {
