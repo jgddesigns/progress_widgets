@@ -1,4 +1,4 @@
-EZ Radar Chart for React.js
+Progress Widgets for React.js
 
 By Jason Dunn 
 
@@ -9,9 +9,18 @@ Contact: jaygeorgedunn@gmail.com
 A simple Progress Widget component for use with React.js and Next.js. Customize size, color and amount of sections. Bar, Meter, Pie and Symbol Widgets available.
 
 
-<!-- ![003](https://github.com/user-attachments/assets/173665d3-1689-436b-913f-1abc3f4e50af)
-![002](https://github.com/user-attachments/assets/875aa8db-692d-4aff-9ba9-f6cc190c7a2d)
-![001](https://github.com/user-attachments/assets/48875049-cedd-4e42-9be0-f66333a5690e) -->
+
+![001](https://github.com/user-attachments/assets/966e415d-523e-4e19-b5f2-3cdabacf2912)
+![002](https://github.com/user-attachments/assets/c389601c-a5ad-42ac-8e1f-be863c023586)
+![003](https://github.com/user-attachments/assets/16c4d277-e3c1-4962-94e7-103d4e8b2fae)
+![004](https://github.com/user-attachments/assets/4cea4300-ad13-46a3-8630-a85e710e6651)
+![005](https://github.com/user-attachments/assets/ad8f2add-fce2-428c-8a8f-4dec22bfd38f)
+![006](https://github.com/user-attachments/assets/cb80cbed-e0c4-473c-ba7f-2b33121686f8)
+![007](https://github.com/user-attachments/assets/31fef177-bbde-4921-897d-8d1921f659b3)
+![008](https://github.com/user-attachments/assets/2675c401-20ab-4f1f-a229-07f669228bf3)
+![009](https://github.com/user-attachments/assets/80d9cd91-45cd-49a3-a92f-9b23114d2fd1)
+
+
 
 
 
