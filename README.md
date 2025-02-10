@@ -48,13 +48,15 @@ Progress Widget component for use with React.js and Next.js. Customize size, col
 
 <ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Bar" Type="bar" Color={["darkgreen", "green", "yellowgreen", "lime", "springgreen", "palegreen"]} Size={3}/> 
 
-![007-a](https://github.com/user-attachments/assets/22f4f8a5-3f84-440a-b24b-34dd072e9711)
+![007-a](https://github.com/user-attachments/assets/5d8ed264-33e7-4548-b285-9ae58b35fd20)
+
 
 
 
 <ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Meter" Type="meter" Color={["blue", "turquoise", "lightblue", "skyblue"]} Size={2}/>
 
-![008-a](https://github.com/user-attachments/assets/fbce413a-134c-4664-91f0-11499bc39bad)
+![008-a](https://github.com/user-attachments/assets/919d0c3c-ed7a-4168-9593-eb5d035d84cb)
+
 
 
 
