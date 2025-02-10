@@ -151,24 +151,32 @@ export default function Symbols(props) {
 
 
     return(
-        <div>
-            {shape_states["shape_map"][0] ?    
-                <div style={{ display: "grid", gridTemplateRows: `repeat(${display_map().length}, auto)`, gridTemplateColumns: `1fr`}}> 
-                    {display_map().map((result) =>  {         
-                        return(
-                            <div style={{ gridTemplateRows: 1, gridTemplateColumns: 'repeat(' + result.obj.length + ', ' + get_spacing() + ')'}} key={result.key} className={row_class}>
-                                {result.obj.map((result2) => {
-                                    return(
-                                        <div key={result2.key}>
-                                            {result2.obj}
-                                        </div>
-                                    )
-                                })}
-                            </div>
-                        )
-                    })}
-                </div>  
-            : null}
+        <div className="grid grid-auto-rows">
+            <div className="grid place-items-center" style={{marginTop: "10%", marginBottom: "10%", fontSize: "18px"}}>
+                <div>
+                    {/* {props.base_states["title"]} */}
+                    My Progress Symbols 
+                </div>
+            </div>
+            <div>
+                {shape_states["shape_map"][0] ?    
+                    <div style={{ display: "grid", gridTemplateRows: `repeat(${display_map().length}, auto)`, gridTemplateColumns: `1fr`}}> 
+                        {display_map().map((result) =>  {         
+                            return(
+                                <div style={{ gridTemplateRows: 1, gridTemplateColumns: 'repeat(' + result.obj.length + ', ' + get_spacing() + ')'}} key={result.key} className={row_class}>
+                                    {result.obj.map((result2) => {
+                                        return(
+                                            <div key={result2.key}>
+                                                {result2.obj}
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            )
+                        })}
+                    </div>  
+                : null}
+            </div>
         </div>
     )
 }

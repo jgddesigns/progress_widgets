@@ -167,7 +167,15 @@ export default function Pie(props) {
 
     return(
         <div>
-            <div className="mt-[150px] grid place-items-center" style={{ gridTemplateColumns: 'repeat(' + props.base_states["length_value"][0] + ', 4px)' }}>
+            <div className="grid grid-auto-rows">
+                <div className="grid place-items-center" style={{marginTop: "20%", marginBottom: "35%", fontSize: "18px"}}>
+                    <div>
+                        {/* {props.base_states["title"]} */}
+                        My Progress Pie 
+                    </div>
+                </div>
+            </div>
+            <div className="mt-[150px] grid place-items-center ml-[10%]" style={{ gridTemplateColumns: 'repeat(' + props.base_states["length_value"][0] + ', 4px)', marginLeft: "50%" }}>
                 {shape_states["shape_map"][0] ? shape_states["shape_map"][0].map((result) =>  {         
                         return(
                             <div key={result.key}>

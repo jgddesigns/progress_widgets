@@ -106,16 +106,26 @@ export default function Meter(props) {
 
     return(
         <div>
-            <div className="mt-[150px] grid place-items-center" style={{ gridTemplateRows: 'repeat(' + props.base_states["length_value"][0] + ', 4px)' }}>
-                {shape_states["shape_map"][0] ? shape_states["shape_map"][0].map((result) =>  {         
-                        return(
-                            <div key={result.key}>
-                                {result.obj}
-                            </div>
-                        )
-                    })
-                : null}
-            </div> 
+            <div className="grid grid-auto-rows">
+                <div className="grid place-items-center" style={{marginTop: "20%", marginBottom: "35%", fontSize: "18px"}}>
+                    <div>
+                        {/* {props.base_states["title"]} */}
+                        My Progress Meter
+                    </div>
+                </div>
+            </div>
+            <div> 
+                <div className="grid place-items-center" style={{gridTemplateRows: 'repeat(' + props.base_states["length_value"][0] + ', 4px)' }}>
+                    {shape_states["shape_map"][0] ? shape_states["shape_map"][0].map((result) =>  {         
+                            return(
+                                <div key={result.key}>
+                                    {result.obj}
+                                </div>
+                            )
+                        })
+                    : null}
+                </div> 
+            </div>
         </div>
     )
 }

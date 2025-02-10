@@ -12,6 +12,9 @@ export default function Bar(props) {
 
 
     const shape_states = {"shape_array": [SymbolArray, setSymbolArray], "shape_map": [SymbolMap, setSymbolMap]}
+    const base_color = "#ebebeb"
+
+
 
 
     useEffect(() => {
@@ -54,7 +57,7 @@ export default function Bar(props) {
         style["--width"] = "5px" 
         style["--height"] = get_size()
 
-        condition ? style["--bgcolor"] = get_color() : style["--bgcolor"] = "#c2c2c2"
+        condition ? style["--bgcolor"] = get_color() : style["--bgcolor"] = base_color
 
         return (
             <div className="w-8">
@@ -107,6 +110,14 @@ export default function Bar(props) {
 
     return(
         <div>
+            <div className="grid grid-auto-rows">
+                <div className="grid place-items-center" style={{marginTop: "20%", marginBottom: "15%", fontSize: "18px"}}>
+                    <div>
+                        {/* {props.base_states["title"]} */}
+                        My Progress Bar 
+                    </div>
+                </div>
+            </div>
             <div className="mt-[150px] grid place-items-center" style={{ gridTemplateColumns: 'repeat(' + props.base_states["length_value"][0] + ', 4px)' }}>
                 {shape_states["shape_map"][0] ? shape_states["shape_map"][0].map((result) =>  {         
                         return(

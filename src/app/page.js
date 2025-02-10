@@ -12,11 +12,11 @@ import Symbols from './styles/Symbols'
 
 export default function ProgressBars (props) {
     const [Restart, setRestart] = React.useState(false)
-    const [CurrentPosition, setCurrentPosition] = React.useState(props.Type == "bar" || props.Type == "meter" ? 100 : props.Type == "pie" ? 1 : props.LengthValue ?  props.LengthValue : 10)
+    const [CurrentPosition, setCurrentPosition] = React.useState(props.Type ? props.Type.toLowerCase() == "bar" || props.Type.toLowerCase() == "meter" ? 100 : props.Type.toLowerCase() == "pie" ? 1 : props.LengthValue ?  props.LengthValue : 10 : 10)
     const [CurrentColor, setCurrentColor] = React.useState(null) 
 
 
-    const base_states = {"restart": [Restart, setRestart], "current_position": [CurrentPosition, setCurrentPosition], "length_value": [props.Type == "bar" || props.Type == "meter" ? 100 : props.Type == "pie" ? 1 : props.LengthValue ?  props.LengthValue : 10], "current_color": [CurrentColor ? CurrentColor : ["red", "yellow", "green"], setCurrentColor], "size": props.Size ? props.Size : "3", "trigger": props.Trigger, "trigger_amount": props.TriggerAmount, "style": props.Type =="symbols" ? props.Style ? props.Style : "circles" : "squares"} 
+    const base_states = {"title": props.Title ? props.Title : "", "restart": [Restart, setRestart], "current_position": [CurrentPosition, setCurrentPosition], "length_value": [props.Type ? props.Type.toLowerCase() == "bar" || props.Type.toLowerCase() == "meter" ? 100 : props.Type.toLowerCase() == "pie" ? 1 : props.LengthValue ?  props.LengthValue : 10 : 10], "current_color": [CurrentColor ? CurrentColor : ["red", "yellow", "green"], setCurrentColor], "size": props.Size ? props.Size : "3", "trigger": props.Trigger, "trigger_amount": props.TriggerAmount, "style": props.Type =="symbols" ? props.Style ? props.Style.toLowerCase() : "circles" : "squares"} 
 
     const types = {"bar": <Bar base_states={base_states}/>, "meter": <Meter base_states={base_states}/>, "pie": <Pie base_states={base_states}/>, "symbols": <Symbols base_states={base_states}/>}
 
@@ -28,11 +28,12 @@ export default function ProgressBars (props) {
 
 
     function get_type(){
-        if(!check_trigger()){
-            return <div className="mt-48 text-2xl">'Trigger' prop is not passed correctly. Ensure it is a set of state variables [variable, setVariable]. See README file for further details.</div>
+        let check = check_trigger()
+        if(check){
+            return <div className="mt-48 text-2xl">{check[1]} prop is not passed correctly. Ensure it is a set of state variables [variable, setVariable]. See README file for further details.</div>
         }
-        if(types[props.Type]){
-            return types[props.Type]
+        if(types[props.Type ? props.Type.toLowerCase() : null]){
+            return types[props.Type ? props.Type.toLowerCase() : null]
         }else{
             return types["bar"]
         }
@@ -40,18 +41,27 @@ export default function ProgressBars (props) {
 
 
     function check_trigger(){
-        if(!props.Trigger || props.Trigger.length != 2){ //need to check if each is a proper state variable
-            return false
+        let check_str = ""
+        if(!props.Trigger || props.Trigger.length != 2){ 
+            check_str = "Trigger"
         }
-        return true
+        if(!props.TriggerAmount || props.TriggerAmount.length != 2){ 
+            check_str = check_str + "TriggerAmount"
+        }
+        if(check_str.length > 0){
+            return check_str
+        }
+        return false
     }
 
 
 
 
   return(
-    <div className="grid place-items-center">
-        {get_type()}
+    <div className="grid grid-auto-rows place-items-center gap-24">
+        <div className="mt-12">
+            {get_type()}
+        </div>
     </div>
   )
 }
