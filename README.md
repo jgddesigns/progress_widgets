@@ -9,9 +9,16 @@ Contact: jaygeorgedunn@gmail.com
 A simple Progress Widget component for use with React.js and Next.js. Customize size, color and progress sections. Bar, Meter, Pie and Symbol Widgets available.
 
 
-<!-- ![003](https://github.com/user-attachments/assets/173665d3-1689-436b-913f-1abc3f4e50af)
-![002](https://github.com/user-attachments/assets/875aa8db-692d-4aff-9ba9-f6cc190c7a2d)
-![001](https://github.com/user-attachments/assets/48875049-cedd-4e42-9be0-f66333a5690e) -->
+
+![Screenshot (50)](https://github.com/user-attachments/assets/96bb0f5c-889f-43e7-909e-0ceb0d4d08e0)
+![Screenshot (51)](https://github.com/user-attachments/assets/d1e18442-e97d-4251-8c0e-cd3d14dd77e4)
+![Screenshot (52)](https://github.com/user-attachments/assets/9c0f9e0b-9dc7-4204-9f51-8c555dfc26bb)
+![Screenshot (54)](https://github.com/user-attachments/assets/516097a7-c8e7-4208-9e83-4673d0a78371)
+![Screenshot (55)](https://github.com/user-attachments/assets/cfc99b6d-14d7-426c-8482-68e5554fa862)
+![Screenshot (56)](https://github.com/user-attachments/assets/0fa97ada-c426-4663-8e8f-2783ecdeb568)
+![Screenshot (57)](https://github.com/user-attachments/assets/90b60c46-806f-452f-b9c0-b4ad8f6aa436)
+![Screenshot (58)](https://github.com/user-attachments/assets/fc97ef99-4dc0-433e-82d3-d133b66dbe20)
+![Screenshot (60)](https://github.com/user-attachments/assets/94276920-f5af-4baf-b49e-48d48146b89f)
 
 
 
