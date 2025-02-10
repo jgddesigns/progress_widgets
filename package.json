@@ -1,6 +1,6 @@
 {
   "name": "progress-widgets",
-  "version": "0.2.0",
+  "version": "1.1.0",
   "private": false,
   "scripts": {
     "dev": "next dev",
@@ -21,7 +21,7 @@
     "tailwindcss": "^3.4.1",
     "typescript": "5.7.3"
   },
-  "description": "A simple Progress Widget component for use with React.js and Next.js. Customize size, color and amount of sections. Bar, Meter, Pie and Symbol Widgets available.",
+  "description": "Progress Widget component for use with React.js and Next.js. Customize size, color and amount of sections. Bar, Meter, Pie and Symbol Widgets available.",
   "main": "./src/app/page.js",
   "repository": {
     "type": "git",
@@ -39,7 +39,7 @@
     "widget"
   ],
   "author": "Jason Dunn",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jgddesigns/progress_bar/issues"
   },
