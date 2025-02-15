@@ -4,7 +4,7 @@ By Jason Dunn
 
 Github: https://www.github.com/jgddesigns
 
-Contact: jaygeorgedunn@gmail.com
+Contact: jgd.email24@gmail.com
 
 Progress Widget component for use with React.js and Next.js. Customize size, color and progress sections. Bar, Meter, Pie and Symbol Widgets available.
 
