@@ -218,7 +218,7 @@ Props Detailed:
 
 MIT License
 
-Copyright (c) 2025 Jason Dunn
+Copyright (c) 2025 JGD Designs
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
