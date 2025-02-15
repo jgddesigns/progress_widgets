@@ -1,6 +1,6 @@
 Progress Widgets for React.js
 
-By Jason Dunn 
+By JGD Designs
 
 Github: https://www.github.com/jgddesigns
 
