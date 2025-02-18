@@ -6,10 +6,10 @@ Github: https://www.github.com/jgddesigns
 
 Contact: jgd.email24@gmail.com
 
-<i>Progress Widgets component for use with React.js and Next.js. Customize size, color and progress sections. Bar, Meter, Pie and Symbol Widgets available.</i>  <br><br>
+<i>Progress Widgets component for use with React.js and Next.js. Customize size, color and progress sections. Bar, Meter, Pie and Symbol Widgets available.</i>  <br><br><br>
 
 
-<h3>Examples:</h3>
+<h3>Examples:</h3><br>
 
 <ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Bar" Type="bar" Color={["red", "orange", "yellow", "lime", "green"]} Size={4}/>
 
