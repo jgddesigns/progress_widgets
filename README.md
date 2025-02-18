@@ -9,56 +9,63 @@ Contact: jgd.email24@gmail.com
 Progress Widget component for use with React.js and Next.js. Customize size, color and progress sections. Bar, Meter, Pie and Symbol Widgets available.
 
 
+___________________________________________________________________________
 
 <ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Bar" Type="bar" Color={["red", "orange", "yellow", "lime", "green"]} Size={4}/>
 
 ![001-a](https://github.com/user-attachments/assets/6d9a5018-65d6-4847-9013-441714c52e89)
 
 
+___________________________________________________________________________
 
 <ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Meter" Type="meter" Color={["red", "orange", "yellow", "lime", "green"]} Size={3}/>
 
 ![002-a](https://github.com/user-attachments/assets/73917779-8cf9-4bcc-8875-de104c45e5f9)
 
 
+___________________________________________________________________________
 
 <ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Pie" Type="pie" Color={["red", "orange", "yellow", "lime", "green"]} Size={5}/>
 
 ![003-a](https://github.com/user-attachments/assets/c5016b58-4b27-4104-9f5a-8cef37004d79)
 
 
+___________________________________________________________________________
 
 <ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Symbols" Type="symbols" Color={["red", "orange", "yellow", "lime", "green"]} Size={2} Style="arrows_right" LengthValue={10}/>
 
 ![004-a](https://github.com/user-attachments/assets/17770557-ae5c-4bec-a43a-2c304bdbe6c0)
 
 
+___________________________________________________________________________
 
 <ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Symbols" Type="symbols" Color={["red", "orange", "yellow", "lime", "green"]} Size={2} Style="stars" LengthValue={10}/>
 
 ![005-a](https://github.com/user-attachments/assets/2f6a5d6f-d2be-41ea-aa1c-623442a0f804)
 
 
+___________________________________________________________________________
 
 <ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Symbols" Type="symbols" Color={["#eb9234", "#ebab34", "#f0bd3c", "#f0c65b"]} Size={3} Style="diamonds" LengthValue={7}/>
 
 ![006-a](https://github.com/user-attachments/assets/585b793a-c235-49f5-8ea6-bee2fb98e19e)
 
 
+___________________________________________________________________________
 
 <ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Bar" Type="bar" Color={["darkgreen", "green", "yellowgreen", "lime", "springgreen", "palegreen"]} Size={3}/> 
 
 ![007-a](https://github.com/user-attachments/assets/5d8ed264-33e7-4548-b285-9ae58b35fd20)
 
 
-
+___________________________________________________________________________
 
 <ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Meter" Type="meter" Color={["blue", "turquoise", "lightblue", "skyblue"]} Size={2}/>
 
 ![008-a](https://github.com/user-attachments/assets/919d0c3c-ed7a-4168-9593-eb5d035d84cb)
 
 
-
+___________________________________________________________________________
 
 <ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Pie" Type="pie" Color={["red", "orange", "yellow", "lime", "green", "#e63946", "#457b9d", "#f4a261", "#2a9d8f", "#9b5de5", "#ff6b6b", "#1d3557", "#ff9f1c", "#6a0572", "#52b788", "#8338ec", "#ffbe0b", "#3a86ff", "#06d6a0", "#ef476f", "#8ac926", "#ff595e", "#1982c4", "#d81159", "#ffca3a", "#c1121f", "#4361ee", "#f77f00", "#8f2d56", "#118ab2", "#9d4edd", "#e36414", "#00a896", "#bc4749", "#6a994e", "#ff007f", "#0a9396", "#aacc00", "#db3069", "#3d348b"]} Size={5}/>
 
@@ -87,7 +94,7 @@ Props Detailed:
 
     Trigger (required)
 
-        A React state-variable set that holds a variable which triggers the movement of the current widget. The variable moves the widget when set to 'true'. The state does not need to be set to 'false' on the project end.
+        A React state-variable set that holds a boolean value which triggers the movement of the current widget. The variable moves the widget when set to 'true'. The state does not need to be set to 'false' on the project end.
 
         Example:
 
@@ -96,7 +103,7 @@ Props Detailed:
 
     TriggerAmount (required)
 
-        A React state-variable set that holds a variable containing the current percentage at which the widget is intended to increment. The percentage needs to be set prior to setting the Trigger state to 'true'.
+        A React state-variable set that holds a number value containing the current percentage at which the widget is intended to increment. The percentage needs to be set prior to setting the Trigger state to 'true'.
 
         Example:
 
