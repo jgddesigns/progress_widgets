@@ -1,15 +1,15 @@
-Progress Widgets for React.js
+<h2>Progress Widgets for React.js</h2>
 
-By JGD Designs
+<font size="4">By JGD Designs</font>
 
 Github: https://www.github.com/jgddesigns
 
 Contact: jgd.email24@gmail.com
 
-Progress Widget component for use with React.js and Next.js. Customize size, color and progress sections. Bar, Meter, Pie and Symbol Widgets available.
+<i>Progress Widgets component for use with React.js and Next.js. Customize size, color and progress sections. Bar, Meter, Pie and Symbol Widgets available.</i>  <br><br>
 
 
-___________________________________________________________________________
+<h3>Examples:</h3>
 
 <ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Bar" Type="bar" Color={["red", "orange", "yellow", "lime", "green"]} Size={4}/>
 
@@ -69,7 +69,7 @@ ___________________________________________________________________________
 
 <ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Progress Pie" Type="pie" Color={["red", "orange", "yellow", "lime", "green", "#e63946", "#457b9d", "#f4a261", "#2a9d8f", "#9b5de5", "#ff6b6b", "#1d3557", "#ff9f1c", "#6a0572", "#52b788", "#8338ec", "#ffbe0b", "#3a86ff", "#06d6a0", "#ef476f", "#8ac926", "#ff595e", "#1982c4", "#d81159", "#ffca3a", "#c1121f", "#4361ee", "#f77f00", "#8f2d56", "#118ab2", "#9d4edd", "#e36414", "#00a896", "#bc4749", "#6a994e", "#ff007f", "#0a9396", "#aacc00", "#db3069", "#3d348b"]} Size={5}/>
 
-![009-a](https://github.com/user-attachments/assets/b90f0722-5fbc-45b4-bc92-c5cf938895f4)
+![009-a](https://github.com/user-attachments/assets/b90f0722-5fbc-45b4-bc92-c5cf938895f4)<br><br><br>
 
 
 
@@ -81,13 +81,13 @@ Getting Started:
 
     Import Line
         import ProgressWidgets from 'progress-widgets'
-
+<br>
 
 
 Component Example:
 
       <ProgressWidgets Trigger={[Trigger, setTrigger]} TriggerAmount={[TriggerAmount, setTriggerAmount]} Title="My Symbols Widget" Type="symbols" Color={["red", "orange", "yellow", "lime", "green"]}  Size={4} LengthValue={12} Style="stars"/>  
-
+<br>
 
 Props Detailed:
 
@@ -218,7 +218,7 @@ Props Detailed:
 
             Style="trapezoids"
 
-
+<br>
 
 
 
