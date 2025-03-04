@@ -16,7 +16,8 @@ export default function ProgressWidgets (props) {
     const [CurrentColor, setCurrentColor] = React.useState(null) 
 
 
-    const base_states = {"title": props.Title ? props.Title : "", "restart": [Restart, setRestart], "current_position": [CurrentPosition, setCurrentPosition], "length_value": [props.Type ? props.Type.toLowerCase() == "bar" || props.Type.toLowerCase() == "meter" ? 100 : props.Type.toLowerCase() == "pie" ? 1 : props.LengthValue ?  props.LengthValue : 10 : 100], "current_color": [CurrentColor ? CurrentColor : ["red", "yellow", "green"], setCurrentColor], "size": props.Size ? props.Size : "3", "trigger": props.Trigger, "trigger_amount": props.TriggerAmount, "style": props.Type =="symbols" ? props.Style ? props.Style.toLowerCase() : "circles" : "squares"} 
+    const base_states = {"title": props.Title ? props.Title : "", "restart": [Restart, setRestart], "current_position": [CurrentPosition, setCurrentPosition], "length_value": [props.Type ? props.Type.toLowerCase() == "bar" || props.Type.toLowerCase() == "meter" ? 100 : props.Type.toLowerCase() == "pie" ? 1 : props.LengthValue ? props.LengthValue : 10 : 100], "current_color": [CurrentColor ? CurrentColor : ["red", "yellow", "green"], setCurrentColor], "size": props.Size ? props.Size : "3", "trigger": props.Trigger, "trigger_amount": props.TriggerAmount, "style": props.Type =="symbols" ? props.Style ? props.Style.toLowerCase() : "circles" : "squares"} 
+
 
     const types = {"bar": <Bar base_states={base_states}/>, "meter": <Meter base_states={base_states}/>, "pie": <Pie base_states={base_states}/>, "symbols": <Symbols base_states={base_states}/>}
 
@@ -24,7 +25,6 @@ export default function ProgressWidgets (props) {
     useEffect(() => {
         !props.CurrentColor ? setCurrentColor(global_functions["is_color"](props.Color ? props.Color : ["red", "orange", "yellow", "lime", "green"])) : null
     }, [props.CurrentColor])
-
 
 
     function get_type(){

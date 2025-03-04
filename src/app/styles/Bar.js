@@ -15,16 +15,14 @@ export default function Bar(props) {
     const base_color = "#ebebeb"
 
 
-
-
     useEffect(() => {
         display_circles() 
     }, [])
 
     useEffect(() => {
         if(props.base_states["trigger"][0] && props.base_states["current_position"][0] > 0 && props.base_states["trigger_amount"][0]){
-            props.base_states["trigger_amount"][0] > 0 ? show_circles(true) : props.base_states["trigger_amount"][1](null)
-            !props.base_states["trigger_amount"][0] ? props.base_states["trigger"][1](false) : null
+            props.base_states["current_position"][0] > 0 ? show_circles(true) : props.base_states["trigger_amount"][1](null)
+            !props.base_states["current_position"][0] ? props.base_states["trigger"][1](false) : null
         }
     }, [props.base_states["trigger"][0], props.base_states["current_position"][0], props.base_states["trigger_amount"][0]])
 
@@ -51,13 +49,13 @@ export default function Bar(props) {
     }
 
 
-    function create_circle(condition){
+    function create_circle(condition, pos){
         let style = {}
 
         style["--width"] = "5px" 
         style["--height"] = get_size()
 
-        condition ? style["--bgcolor"] = get_color() : style["--bgcolor"] = base_color
+        condition ? style["--bgcolor"] = get_color(pos) : style["--bgcolor"] = base_color
 
         return (
             <div className="w-8">
@@ -69,11 +67,16 @@ export default function Bar(props) {
 
 
     function show_circles(condition, start = null){
-        let trigger_amount = props.base_states["trigger_amount"][0] - 1
         let pos = props.base_states["current_position"][0]
         let shown_arr = shape_states["shape_array"][0]
+        let i 
 
-        !start ? shown_arr[Math.abs(props.base_states["length_value"][0] - props.base_states["current_position"][0])] = create_circle(condition) : shown_arr.push(create_circle(condition))
+        condition ? i = 0 : i = props.base_states["trigger_amount"][0] - 1
+        while(i < props.base_states["trigger_amount"][0]){
+            !start ? shown_arr[Math.abs(props.base_states["length_value"][0] - pos)] = create_circle(condition, pos) : shown_arr.push(create_circle(condition, pos))
+            condition ? pos = pos - 1 : null
+            i++
+        }
 
         const shape_map = shown_arr.map((name, index) => {
             return {
@@ -85,16 +88,13 @@ export default function Bar(props) {
         shape_states["shape_array"][1](shown_arr)
         shape_states["shape_map"][1](shape_map)
 
-        condition ? pos = pos - 1 : null
         props.base_states["current_position"][1](pos)
-        props.base_states["trigger_amount"][1](trigger_amount)
+        props.base_states["trigger"][1](false)
     }
 
 
-    function get_color(){
-        let value = props.base_states["current_color"][0].length - Math.ceil(props.base_states["current_position"][0] / props.base_states["length_value"][0] * props.base_states["current_color"][0].length)
-
-        return value < props.base_states["current_color"][0].length ? (props.base_states["current_position"][0] / props.base_states["length_value"][0]) >= ((props.base_states["current_color"][0].length - 1) / props.base_states["current_color"][0].length) ? props.base_states["current_color"][0][0] : props.base_states["current_color"][0][value] : props.base_states["current_color"][0][props.base_states["current_color"][0].length - 1]
+    function get_color(pos){
+        return props.base_states["current_color"][0][Math.floor((((props.base_states["length_value"][0] - pos) / props.base_states["length_value"][0]) * props.base_states["current_color"][0].length))]
     }
 
 

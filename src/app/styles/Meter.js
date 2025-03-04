@@ -10,7 +10,7 @@ export default function Meter(props) {
     const [SymbolArray, setSymbolArray] = React.useState([])
     const [SymbolMap, setSymbolMap] = React.useState([])
 
-    
+
     const shape_states = {"shape_array": [SymbolArray, setSymbolArray], "shape_map": [SymbolMap, setSymbolMap]}
 
 
@@ -48,13 +48,13 @@ export default function Meter(props) {
     }
 
 
-    function create_circle(condition){
+    function create_circle(condition, pos){
         let style = {}
 
         style["--width"] = get_size() 
         style["--height"] = "10px"
 
-        condition ? style["--bgcolor"] = get_color() : style["--bgcolor"] = "#c2c2c2"
+        condition ? style["--bgcolor"] = get_color(pos) : style["--bgcolor"] = "#c2c2c2"
 
         return (
             <div className="w-8">
@@ -66,16 +66,22 @@ export default function Meter(props) {
 
 
     function show_circles(condition, start = null){
-        let trigger_amount = props.base_states["trigger_amount"][0] - 1
-        let pos = props.base_states["current_position"][0] - 1
+        console.log(props.base_states["current_position"][0])
+        let pos = props.base_states["current_position"][0]
         let shown_arr = shape_states["shape_array"][0]
+        let i 
 
-        !start ? shown_arr[props.base_states["current_position"][0]] = create_circle(condition) : shown_arr.push(create_circle(condition))
+        condition ? i = 0 : i = props.base_states["trigger_amount"][0] - 1
+        while(i < props.base_states["trigger_amount"][0]){
+            !start ? shown_arr[pos] = create_circle(condition, pos) : shown_arr.push(create_circle(condition, pos))
+            condition ? pos = pos - 1 : null
+            i++
+        }
 
         const shape_map = shown_arr.map((name, index) => {
             return {
-              obj: shown_arr[index],
-              key: uuidv4()
+                obj: shown_arr[index],
+                key: uuidv4()
             }
         })
 
@@ -83,14 +89,12 @@ export default function Meter(props) {
         shape_states["shape_map"][1](shape_map)
 
         props.base_states["current_position"][1](pos)
-        props.base_states["trigger_amount"][1](trigger_amount)
+        props.base_states["trigger"][1](false)
     }
 
 
-    function get_color(){
-        let value = props.base_states["current_color"][0].length - Math.ceil(props.base_states["current_position"][0] / props.base_states["length_value"][0] * props.base_states["current_color"][0].length)
-
-        return value < props.base_states["current_color"][0].length ? (props.base_states["current_position"][0] / props.base_states["length_value"][0]) >= ((props.base_states["current_color"][0].length - 1) / props.base_states["current_color"][0].length) ? props.base_states["current_color"][0][0] : props.base_states["current_color"][0][value] : props.base_states["current_color"][0][props.base_states["current_color"][0].length - 1]
+    function get_color(pos){
+        return props.base_states["current_color"][0][Math.floor((((props.base_states["length_value"][0] - pos) / props.base_states["length_value"][0]) * props.base_states["current_color"][0].length))]
     }
 
 
