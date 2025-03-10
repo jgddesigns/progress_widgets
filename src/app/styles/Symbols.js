@@ -28,6 +28,8 @@ export default function Symbols(props) {
     }, [props.base_states["trigger"][0]])
 
 
+
+    
     function clear_circles(){
         shape_states["shape_array"][1]([])
         shape_states["shape_map"][1]([])
@@ -86,9 +88,7 @@ export default function Symbols(props) {
 
 
     function get_color(){
-        let value = props.base_states["current_color"][0].length - Math.ceil(props.base_states["current_position"][0] / props.base_states["length_value"][0] * props.base_states["current_color"][0].length)
-
-        return value < props.base_states["current_color"][0].length ? (props.base_states["current_position"][0] / props.base_states["length_value"][0]) >= ((props.base_states["current_color"][0].length - 1) / props.base_states["current_color"][0].length) ? props.base_states["current_color"][0][0] : props.base_states["current_color"][0][value] : props.base_states["current_color"][0][props.base_states["current_color"][0].length - 1]
+        return props.base_states["current_color"][0][props.base_states["current_color"][0].length - (Math.ceil(props.base_states["current_color"][0].length * (props.base_states["current_position"][0] / props.base_states["length_value"][0])))]
     }
 
 

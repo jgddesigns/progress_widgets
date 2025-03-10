@@ -27,6 +27,8 @@ export default function ProgressWidgets (props) {
     }, [props.CurrentColor])
 
 
+    
+
     function get_type(){
         let check = check_trigger()
         if(check){

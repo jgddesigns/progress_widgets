@@ -37,6 +37,8 @@ export default function Pie(props) {
     }, [props.base_states["trigger"][0], props.base_states["current_position"][0], props.base_states["trigger_amount"][0]])
 
 
+    
+
     function clear_circles(){
         shape_states["shape_array"][1]([])
         shape_states["shape_map"][1]([])
