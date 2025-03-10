@@ -100,16 +100,23 @@ Props Detailed:
 
             Trigger={[MyTrigger, setMyTrigger]}
 
+        *Needs a function that includes setMyTrigger(true). This is to be called when the widget progress is intended to change. 
+        **The names 'MyTrigger' and 'setMyTrigger' can be anything on your end, as long as they are a state variable and passed in the 'Trigger' prop as a two element array object as shown above.
 
+        
     TriggerAmount (required)
 
-        A React state-variable set that holds a number value containing the current percentage at which the widget is intended to increment. The percentage needs to be set prior to setting the Trigger state to 'true'.
+        A React state-variable set that holds a number value containing the current percentage at which the widget is intended to increment. The percentage needs to be set prior to setting the Trigger state to 'true'. The amount can be static and the increment can be stable over time (ex. 10). It can also be changed on your end by calling setMyTriggerAmount(x) based on percentages (such as a damage meter or experience bar seen in a video games).
 
         Example:
 
             TriggerAmount={[MyTriggerAmount, setMyTriggerAmount]}
 
- 
+        *If the increment amount is intended to fluctuate, a function needs to be called that includes setMyTriggerAmount(x). As mentioned above, this is to be called prior to setMyTrigger(true).
+        **The names 'MyTriggerAmount' and 'setMyTriggerAmount' can be anything on your end, as long as they are a state variable and passed in the 'TriggerAmount' prop as a two element array object as shown above.
+        **Based on 100 max percentage.
+
+
     Title (optional)
 
         A string holding the title of the chart.
@@ -166,7 +173,6 @@ Props Detailed:
             Color=["blue", "turqoise", "aqua", "sky-blue"]
 
             Color=["blue", "turqoise", "#000fff", "#ea45ca"]
-
 
 
     Size (optional)
