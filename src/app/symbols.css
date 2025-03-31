@@ -5,19 +5,11 @@
     border-radius: 50%;
 }
 
-/* .circle_fill{
-    clip-path: polygon(var(--shape));
-    width: 150px;
-    height: 150px;
-    background-color: var(--bgcolor);
-} */
-
 .circle_fill{
     border-radius: 50%;
     background: conic-gradient(var(--shape));
-    width: 150px;
-    height: 150px;
-    /* background-color: var(--bgcolor); */
+    width: 5px;
+    height: 500px;
 }
 
 .squares{
@@ -40,7 +32,6 @@
     height: var(--height);
     background-color: var(--bgcolor);
 }
-
 
 .stars{
     clip-path: polygon(

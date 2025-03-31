@@ -5,7 +5,7 @@ import './ProgressBars.module.css';
 import Bar from './styles/Bar';
 import Meter from './styles/Meter';
 import Pie from './styles/Pie';
-import Symbols from './styles/Symbols'
+import Symbols from './styles/Symbols';
 
 
 
@@ -16,18 +16,22 @@ export default function ProgressWidgets (props) {
     const [CurrentColor, setCurrentColor] = React.useState(null) 
 
 
-    const base_states = {"title": props.Title ? props.Title : "", "restart": [Restart, setRestart], "current_position": [CurrentPosition, setCurrentPosition], "length_value": [props.Type ? props.Type.toLowerCase() == "bar" || props.Type.toLowerCase() == "meter" ? 100 : props.Type.toLowerCase() == "pie" ? 1 : props.LengthValue ? props.LengthValue : 10 : 100], "current_color": [CurrentColor ? CurrentColor : ["red", "yellow", "green"], setCurrentColor], "size": props.Size ? props.Size : "3", "trigger": props.Trigger, "trigger_amount": props.TriggerAmount, "style": props.Type =="symbols" ? props.Style ? props.Style.toLowerCase() : "circles" : "squares"} 
+    const base_states = {"title": props.Title ? props.Title : "", "restart": [Restart, setRestart], "current_position": [CurrentPosition, setCurrentPosition], "length_value": [props.Type ? props.Type.toLowerCase() == "bar" || props.Type.toLowerCase() == "meter" ? 100 : props.Type.toLowerCase() == "pie" ? 1 : props.LengthValue ? props.LengthValue : 10 : 100], "current_color": [CurrentColor ? CurrentColor : ["red", "yellow", "green"], setCurrentColor], "size": props.Size ? props.Size : "3", "trigger": props.Trigger, "trigger_amount": props.TriggerAmount, "style": props.Type =="symbols" ? props.Style ? props.Style.toLowerCase() : "circles" : "squares", "reset": props.Reset ? props.Reset : null} 
 
 
     const types = {"bar": <Bar base_states={base_states}/>, "meter": <Meter base_states={base_states}/>, "pie": <Pie base_states={base_states}/>, "symbols": <Symbols base_states={base_states}/>}
 
 
     useEffect(() => {
-        !props.CurrentColor ? setCurrentColor(global_functions["is_color"](props.Color ? props.Color : ["red", "orange", "yellow", "lime", "green"])) : null
-    }, [props.CurrentColor])
+        !CurrentColor ? setCurrentColor(global_functions["is_color"](props.Color ? props.Color : ["red", "orange", "yellow", "lime", "green"])) : null
+    }, [CurrentColor])
 
 
-    
+
+    useEffect(() => {
+        props.Reset ? setCurrentColor(global_functions["is_color"](props.Color ? props.Color : ["red", "orange", "yellow", "lime", "green"])) : null
+    }, [props.Reset])
+
 
     function get_type(){
         let check = check_trigger()

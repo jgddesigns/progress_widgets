@@ -1,8 +1,8 @@
 .circle_fill{
     border-radius: 50%;
     background: conic-gradient(var(--shape));
-    width: 150px;
-    height: 150px;
+    width: var(--size);
+    height: var(--size);
 }
 
 .bar{

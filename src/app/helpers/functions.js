@@ -14,16 +14,12 @@ function is_color(colors){
             for(let j=1; j<colors[i].length; j++){
                 if(isNaN(colors[i][j])){
                     if(!hex_letters.includes(colors[i][j].toLowerCase())){
-                        console.log("letter " + colors[i][j] + " not valid")
-                        console.log("set to default gray")
                         temp_arr.push("gray")
                         continue
                     }
                 }
                 else{
                     if(colors[i][j] > 9){
-                        console.log("number " + colors[i][j] + " not valid")
-                        console.log("set to default gray")
                         temp_arr.push("gray")
                         continue
                     }
@@ -32,7 +28,6 @@ function is_color(colors){
             temp_arr.push(colors[i])
             continue
         }
-        console.log("no valid color, defaulting to gray")
         temp_arr.push("gray")
     }
     return temp_arr

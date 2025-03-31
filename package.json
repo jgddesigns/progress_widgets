@@ -1,6 +1,6 @@
 {
   "name": "progress-widgets",
-  "version": "1.2.37",
+  "version": "1.4.2",
   "private": false,
   "scripts": {
     "dev": "next dev",

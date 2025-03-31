@@ -10,6 +10,7 @@ export default function Symbols(props) {
     const [SymbolArray, setSymbolArray] = React.useState([])
     const [SymbolMap, setSymbolMap] = React.useState([])
 
+    const base_color = "#ebebeb"
 
     const shape_states = {"shape_array": [SymbolArray, setSymbolArray], "shape_map": [SymbolMap, setSymbolMap]}
     const row_size = props.base_states["size"] < 4 ? 20 : 10
@@ -18,8 +19,14 @@ export default function Symbols(props) {
 
 
     useEffect(() => {
-        display_circles() 
-    }, [])
+        props.base_states["reset"][0] ? reset_circles() : null
+    }, [props.base_states["reset"][0]])
+
+
+    useEffect(() => {
+        shape_states["shape_map"][0].length < 1 ? display_circles() : null
+    }, [shape_states["shape_map"][0]])
+
 
     useEffect(() => {
         if(props.base_states["trigger"][0] && props.base_states["current_position"][0] > 0){
@@ -28,6 +35,13 @@ export default function Symbols(props) {
     }, [props.base_states["trigger"][0]])
 
 
+
+    function reset_circles(){
+        shape_states["shape_array"][1]([])
+        shape_states["shape_map"][1]([])
+        props.base_states["current_position"][1](props.base_states["length_value"][0])
+        props.base_states["reset"][1](false)
+    }
 
     
     function clear_circles(){
@@ -54,7 +68,7 @@ export default function Symbols(props) {
 
         style["--size"] = get_size() 
 
-        condition ? style["--bgcolor"] = get_color() : style["--bgcolor"] = "#c2c2c2"
+        condition ? style["--bgcolor"] = get_color() : style["--bgcolor"] = base_color
 
         return (
             <div className="w-8">
@@ -88,7 +102,7 @@ export default function Symbols(props) {
 
 
     function get_color(){
-        return props.base_states["current_color"][0][props.base_states["current_color"][0].length - (Math.ceil(props.base_states["current_color"][0].length * (props.base_states["current_position"][0] / props.base_states["length_value"][0])))]
+        return props.base_states["current_color"][0].length > 1 ? props.base_states["current_color"][0][props.base_states["current_color"][0].length - (Math.ceil(props.base_states["current_color"][0].length * (props.base_states["current_position"][0] / props.base_states["length_value"][0])))] : props.base_states["current_color"][0][0]
     }
 
 
@@ -99,9 +113,7 @@ export default function Symbols(props) {
             }
 
             return <div className="mt-[150px]"> "Invalid 'Style' prop passed. Pass a valid 'Style' prop identified in the README file." </div>
-        }catch{
-            console.log("Error in Symbols component, 'get_style' function.")
-        }
+        }catch{}
     }
 
 
@@ -151,31 +163,37 @@ export default function Symbols(props) {
 
 
     return(
-        <div className="grid grid-auto-rows">
-            <div className="grid place-items-center" style={{marginTop: "10%", marginBottom: "10%", fontSize: "12px"}}>
-                <div>
-                    {props.base_states["title"]}
+        <div className="grid grid-auto-rows place-items-center">
+            {props.base_states["length_value"][0] <= 10 ?
+                <div className="grid place-items-center">
+                    <div className="text-xl">
+                        {props.base_states["title"]}
+                    </div>
+                    <div className="mt-24">
+                        {shape_states["shape_map"][0] ?    
+                            <div style={{ display: "grid", gridTemplateRows: `repeat(${display_map().length}, auto)`, gridTemplateColumns: `1fr`}}> 
+                                {display_map().map((result) =>  {         
+                                    return(
+                                        <div style={{ gridTemplateRows: 1, gridTemplateColumns: 'repeat(' + result.obj.length + ', ' + get_spacing() + ')'}} key={result.key} className={row_class}>
+                                            {result.obj.map((result2) => {
+                                                return(
+                                                    <div key={result2.key}>
+                                                        {result2.obj}
+                                                    </div>
+                                                )
+                                            })}
+                                        </div>
+                                    )
+                                })}
+                            </div>  
+                        : null}
+                    </div>
                 </div>
-            </div>
-            <div>
-                {shape_states["shape_map"][0] ?    
-                    <div style={{ display: "grid", gridTemplateRows: `repeat(${display_map().length}, auto)`, gridTemplateColumns: `1fr`}}> 
-                        {display_map().map((result) =>  {         
-                            return(
-                                <div style={{ gridTemplateRows: 1, gridTemplateColumns: 'repeat(' + result.obj.length + ', ' + get_spacing() + ')'}} key={result.key} className={row_class}>
-                                    {result.obj.map((result2) => {
-                                        return(
-                                            <div key={result2.key}>
-                                                {result2.obj}
-                                            </div>
-                                        )
-                                    })}
-                                </div>
-                            )
-                        })}
-                    </div>  
-                : null}
-            </div>
+            :
+                <div style={{marginTop: "50%"}} className="mt-48 text-xl">
+                    Error. Please set the LengthValue prop to 10 or less.
+                </div>
+            }
         </div>
     )
 }

@@ -12,12 +12,19 @@ export default function Bar(props) {
 
 
     const shape_states = {"shape_array": [SymbolArray, setSymbolArray], "shape_map": [SymbolMap, setSymbolMap]}
+    
     const base_color = "#ebebeb"
 
 
     useEffect(() => {
-        display_circles() 
-    }, [])
+        props.base_states["reset"][0] ? reset_circles() : null
+    }, [props.base_states["reset"][0]])
+
+
+    useEffect(() => {
+        shape_states["shape_map"][0].length < 1 ? display_circles() : null
+    }, [shape_states["shape_map"][0]])
+
 
     useEffect(() => {
         if(props.base_states["trigger"][0] && props.base_states["current_position"][0] > 0 && props.base_states["trigger_amount"][0]){
@@ -27,7 +34,13 @@ export default function Bar(props) {
     }, [props.base_states["trigger"][0], props.base_states["current_position"][0], props.base_states["trigger_amount"][0]])
 
 
-
+    function reset_circles(){
+        shape_states["shape_array"][1]([])
+        shape_states["shape_map"][1]([])
+        props.base_states["length_value"][0] = 100
+        props.base_states["current_position"][1](100)
+        props.base_states["reset"][1](false)
+    }
     
     function clear_circles(){
         shape_states["shape_array"][1]([])
@@ -40,7 +53,6 @@ export default function Bar(props) {
 
         props.base_states["length_value"][0] = 100
         props.base_states["current_position"][1](100)
-        props.base_states["restart"][1](false)
 
         clear_circles()
 
@@ -111,13 +123,9 @@ export default function Bar(props) {
 
 
     return(
-        <div>
-            <div className="grid grid-auto-rows">
-                <div className="grid place-items-center" style={{marginTop: "20%", marginBottom: "15%", fontSize: "18px"}}>
-                    <div>
-                        {props.base_states["title"]}
-                    </div>
-                </div>
+        <div className="grid place-items-center">
+            <div className="text-xl mb-24">
+                {props.base_states["title"]}
             </div>
             <div className="mt-[150px] grid place-items-center" style={{ gridTemplateColumns: 'repeat(' + props.base_states["length_value"][0] + ', 4px)' }}>
                 {shape_states["shape_map"][0] ? shape_states["shape_map"][0].map((result) =>  {         
