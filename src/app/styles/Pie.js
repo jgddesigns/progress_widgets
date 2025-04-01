@@ -48,6 +48,7 @@ export default function Pie(props) {
         shape_states["shape_array"][1]([])
         shape_states["shape_map"][1]([])
         setPercentArray([])
+        setColorArray([])
         props.base_states["length_value"] = 1
         props.base_states["current_position"][1](100)
         props.base_states["reset"][1](false)
