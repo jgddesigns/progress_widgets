@@ -4,7 +4,7 @@
 
 Github: https://www.github.com/jgddesigns
 
-Contact: jgd.email24@gmail.com
+Contact: jasongdunn@outlook.com
 
 <br><br><br>
 
@@ -12,9 +12,9 @@ Contact: jgd.email24@gmail.com
 <i>A progress widgets component for use with React.js and Next.js. Customize size, color and progress sections. Bar, Meter, Pie and Symbol Widgets available. Can be used to display metrics for goals or tasks, as a meter for video game progress, quantities such as temperature, or anything else you can think of!</i> <br><br><br>
 
 
-DEMO (desktop version) : https://react-app-28115896996.us-west1.run.app/
+DEMO (desktop version) : https://progress-widgets-deploy.vercel.app/
 
-NPM Package : https://www.npmjs.com/package/progress-widgets
+NPM Package : https://www.npmjs.com/progress-widgets
 
 <br><br><br>
 
